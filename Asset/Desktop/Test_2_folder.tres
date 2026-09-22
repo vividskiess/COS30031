@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://caxo3sgbkx4kb"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/Fileresource.gd" id="1_mpqhp"]
+[ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="2_rajcc"]
+
+[resource]
+script = ExtResource("1_mpqhp")
+display_name = "Test_2"
+icon_texture = ExtResource("2_rajcc")
+file_type = 0
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

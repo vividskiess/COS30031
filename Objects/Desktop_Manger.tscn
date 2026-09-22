@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b4thiqqvjktp1"]
+
+[ext_resource type="Script" uid="uid://d1kmbd4dwsnba" path="res://Script/Desktop_Manager.gd" id="1_ukg44"]
+[ext_resource type="PackedScene" uid="uid://b5q4drdvvuvdp" path="res://Objects/MainScreen.tscn" id="2_7xnu4"]
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/Fileresource.gd" id="3_vibsw"]
+[ext_resource type="Texture2D" uid="uid://bi4xw8n23rjr6" path="res://Asset/notes.png" id="4_7xnu4"]
+[ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="5_vibsw"]
+
+[sub_resource type="Resource" id="Resource_mxjem"]
+script = ExtResource("3_vibsw")
+display_name = "Mypassword"
+icon_texture = ExtResource("4_7xnu4")
+text_content = "
+Ysername: JustinBieberFangirl
+Password: ILovejustinBieber22
+"
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"
+
+[sub_resource type="Resource" id="Resource_1af10"]
+script = ExtResource("3_vibsw")
+display_name = "Test_1"
+icon_texture = ExtResource("5_vibsw")
+file_type = 0
+contained_files = Array[ExtResource("3_vibsw")]([SubResource("Resource_mxjem")])
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"
+
+[node name="Desktop_manger" type="Control" unique_id=118327403]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ukg44")
+window_scene = ExtResource("2_7xnu4")
+desktop_files = Array[ExtResource("3_vibsw")]([SubResource("Resource_1af10")])
+
+[node name="Taskbar" type="HBoxContainer" parent="." unique_id=2057635650]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IconGrid" type="GridContainer" parent="." unique_id=557714982]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 648.0

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cyabxsr82a1ip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13qdw"]
+
+[node name="Background" type="Control" unique_id=1099439349]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0046762, 1)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=743348090]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.00012207031
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04214482, 0.33184618, 0.49029785, 1)
+
+[node name="task_bar_background" type="Panel" parent="." unique_id=608321061]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.981369
+offset_top = -64.0
+offset_right = -3.9812012
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_13qdw")
+
+[node name="Windows" type="Button" parent="task_bar_background" unique_id=129716297]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 125.0
+offset_bottom = 59.0
+text = "Start"
+
+[node name="Time" type="Panel" parent="task_bar_background" unique_id=2097723812]
+layout_mode = 0
+offset_left = 1770.7197
+offset_top = 7.0
+offset_right = 1903.7197
+offset_bottom = 60.0
+
+[node name="Label" type="Label" parent="task_bar_background/Time" unique_id=321302053]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "12:30"
