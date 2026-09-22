@@ -2,35 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://b4thiqqvjktp1" path="res://Objects/Desktop_Manger.tscn" id="2_2o0qa"]
 [ext_resource type="PackedScene" uid="uid://8tjcqnwtqcwi" path="res://Objects/Mouse.tscn" id="2_ldsjx"]
-[ext_resource type="PackedScene" uid="uid://bw3wnwary5kjo" path="res://Objects/Desktop_Icon.tscn" id="3_ldsjx"]
-[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/Fileresource.gd" id="3_p01jj"]
-[ext_resource type="PackedScene" uid="uid://cyabxsr82a1ip" path="res://Objects/Main_background.tscn" id="4_2o0qa"]
 
 [node name="Test" type="Control" unique_id=2124420353]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 2.0
-offset_top = 4.0
+offset_top = 27.0
 offset_right = 1922.0
 offset_bottom = 1084.0
 
-[node name="Background" parent="." unique_id=1099439349 instance=ExtResource("4_2o0qa")]
-layout_mode = 1
-
 [node name="Desktop_manger" parent="." unique_id=118327403 instance=ExtResource("2_2o0qa")]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 40.0
-offset_right = 44.0
-offset_bottom = 40.0
-desktop_files = Array[ExtResource("3_p01jj")]([])
-
-[node name="DesktopIcon" parent="." unique_id=776160744 instance=ExtResource("3_ldsjx")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 65.0
-offset_bottom = 60.0
+offset_left = 6.0
+offset_top = -35.0
+offset_right = 6.0
+offset_bottom = -35.0
+scale = Vector2(1.0044761, 0.9910996)
 
 [node name="mouse" parent="." unique_id=691309237 instance=ExtResource("2_ldsjx")]
 layout_mode = 0

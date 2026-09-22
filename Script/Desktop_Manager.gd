@@ -3,35 +3,36 @@ extends Control
 @export var window_scene: PackedScene
 @export var desktop_files: Array[FileResource] = []
 @export var grid_column: int = 1
+@export var Taskbar_grid: int = 5
 
 @onready var icon_grid: GridContainer = $IconGrid
-@onready var taskbar: HBoxContainer = $Taskbar
-@onready var background_taskbar: Panel = get_tree().get_first_node_in_group("task_bar_background") 
-
+@onready var taskbar = $Taskbar/Panel/TaskbarGrid
+@onready var taskbar_grid = $Taskbar/Panel/TaskbarGrid
 
 
 #Window node -> Button
 var minimize_icon_to_window: Dictionary = {}
-var background_task_bar_position = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_preload_desktop("res://Asset/Desktop/")
 	_icon_grid_setup()
-	
+
 	for file_res in desktop_files:
 		create_desktop_icon(file_res, icon_grid)
 
-#Changing grid
+#Changing grid main window
 func _icon_grid_setup() -> void:
 	icon_grid.columns = grid_column
 	icon_grid.add_theme_constant_override("h_separation", 100)
 	icon_grid.add_theme_constant_override("v_separation",100)
+	
+	taskbar_grid = taskbar_grid
+	taskbar_grid.add_theme_constant_override("h_separation", 50)
 
 #setting up folder grid 
 func _folder_grid_setup(folder:Node) -> void:
-	
 	pass
 	
 	
@@ -48,20 +49,20 @@ func _on_icon_open(data: FileResource) -> void:
 	var new_window = window_scene.instantiate()
 	add_child(new_window)
 	new_window.set_title(data.display_name)
-	
 	new_window.state.connect(_control_window_state) #connects with window to change open, close. minimize
 	
 	
 	#creating mini button in taskbar
 	var taskbar_button = Button.new()
 	taskbar_button.icon = data.icon_texture
-	taskbar_button.custom_minimum_size = Vector2(40,40)
-	taskbar.add_child(taskbar_button)
+	taskbar_button.custom_minimum_size = Vector2(64,64) #size of icon in minimize mode
+	taskbar_button.position.x = 120
+	taskbar_grid.add_child(taskbar_button)
 	
 	#dictionary of button icon
 	minimize_icon_to_window[new_window] = taskbar_button
 	
-	taskbar_button.pressed.connect(func(): _control_window_state(new_window, "open")) #calling to open back up
+	taskbar_button.pressed.connect(func(): _control_window_state(new_window, "opened")) #calling to open back up
 	
 	match data.file_type:
 		FileResource.FileType.TEXT:
@@ -80,9 +81,24 @@ func _on_icon_open(data: FileResource) -> void:
 func _control_window_state(window_node:Node, new_state:String) -> void:
 	match new_state:
 		"closed":
+			if minimize_icon_to_window.has(window_node):
+				var icon_button = minimize_icon_to_window[window_node]
+				icon_button.queue_free()
+				minimize_icon_to_window.erase(window_node)
+			
 			window_node.queue_free()
+			
 		"minimized":
-			window_node.hide()
+			if minimize_icon_to_window.has(window_node):
+				var icon_button = minimize_icon_to_window[window_node]
+				window_node._minimize_to_point(icon_button.global_position)
+			
+		"opened":
+				window_node.show()
+				window_node.move_to_front()
+				
+
+	
 
 #load up all icon in desktop like windows
 func _preload_desktop(path: String) -> void:
@@ -95,13 +111,6 @@ func _preload_desktop(path: String) -> void:
 		
 		if load_res is FileResource:
 			desktop_files.append(load_res)
-			
-func _task_bar_setup(new_pos: Vector2) -> void:
-	background_task_bar_position = new_pos
-	taskbar.global_position = background_task_bar_position
-	pass
 	
-func _minimize_to_point() -> void:
-	
-	pass
+
 		

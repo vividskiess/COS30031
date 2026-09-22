@@ -60,7 +60,9 @@ func _on_close_button()-> void:
 func _on_minimize_button()->void:
 	curr_state="minimized"
 	state.emit(self, curr_state)
-
+	
+func _minimize_to_point(pos: Vector2) -> void:
+	hide()
 			
 func _mouse_pos_snapped(new_pos: Vector2) -> void:
 	if is_dragging:

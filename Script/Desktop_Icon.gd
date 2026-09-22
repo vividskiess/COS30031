@@ -1,6 +1,5 @@
 extends Button
 
-
 signal icon_double_clicked(data: FileResource)
 
 @onready var icon_texture_rect: TextureRect = $VBoxContainer/TextureRect
@@ -15,7 +14,6 @@ func _on_mouse_exit() -> void:
 	pass
 	
 func _ready() -> void:
-
 	pass
 
 func setup(data: FileResource) -> void:
