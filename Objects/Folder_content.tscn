@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b6a2wm3d51h2f"]
+
+[ext_resource type="Script" uid="uid://2uckp6ik2hs8" path="res://Script/Folder_content.gd" id="1_5ksw5"]
+[ext_resource type="PackedScene" uid="uid://42lqgwhgm883" path="res://Objects/Desktop_Icon.tscn" id="2_s05o6"]
+
+[node name="Folder_Content" type="Control" unique_id=335897603]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5ksw5")
+icon_scence = ExtResource("2_s05o6")
+
+[node name="Content_container" type="GridContainer" parent="." unique_id=694454617]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 74.0
+offset_right = 41.0
+offset_bottom = 114.0
+
+[node name="Directory_display" type="LineEdit" parent="." unique_id=1906177310]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 2.0
+offset_right = 963.0
+offset_bottom = 74.0
+scale = Vector2(0.89168566, 0.87553775)
+
+[node name="Back" type="Button" parent="." unique_id=157932967]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 35.0
+
+[node name="Forward" type="Button" parent="." unique_id=576998076]
+layout_mode = 0
+offset_left = 53.0
+offset_right = 93.0
+offset_bottom = 35.0

@@ -1,44 +1,62 @@
 extends Control
 
 @export var window_scene: PackedScene
-@export var desktop_files: Array[FileResource] = []
-@export var grid_column: int = 1
-@export var Taskbar_grid: int = 5
+@export var desktop_icon: PackedScene
+@export var folder_scence: PackedScene
+@export var text_scence: PackedScene
+
+#export var application_scence: PackedScence?
+
+@onready var desktop_files: Array[FileResource] = []
+@onready var grid_column: int = 4
+@onready var Taskbar_grid: int = 5
 
 @onready var icon_grid: GridContainer = $IconGrid
-@onready var taskbar = $Taskbar/Panel/TaskbarGrid
 @onready var taskbar_grid = $Taskbar/Panel/TaskbarGrid
 
+signal windows_content(window_node: Node)
 
 #Window node -> Button
 var minimize_icon_to_window: Dictionary = {}
+
+#Default Desktop Directory
+var desktop_path: String = "C:/Desktop"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_preload_desktop("res://Asset/Desktop/")
 	_icon_grid_setup()
-
+	
+	for file_res in desktop_files:
+		if file_res.file_type == FileResource.FileType.FOLDER:
+			link_to_parent(file_res)
 	for file_res in desktop_files:
 		create_desktop_icon(file_res, icon_grid)
 
+
 #Changing grid main window
 func _icon_grid_setup() -> void:
+	#Desktop_grid seperation
 	icon_grid.columns = grid_column
 	icon_grid.add_theme_constant_override("h_separation", 100)
 	icon_grid.add_theme_constant_override("v_separation",100)
 	
-	taskbar_grid = taskbar_grid
+	#icon_grid seperation
 	taskbar_grid.add_theme_constant_override("h_separation", 50)
 
-#setting up folder grid 
-func _folder_grid_setup(folder:Node) -> void:
-	pass
+
+#linking every folder
+func link_to_parent(parent: FileResource):
+	for child in parent.contained_files:
+		child.parent_path = parent
+		if child.file_type == FileResource.FileType.FOLDER:
+			link_to_parent(child)
 	
 	
 #intiate desktop
 func create_desktop_icon(data: FileResource, parent_grid: GridContainer) -> void:
-	var icon_instance = preload("res://Objects/Desktop_Icon.tscn").instantiate() #loadup all the icon on the computer
+	var icon_instance = desktop_icon.instantiate() #loadup all the icon on the computer
 	parent_grid.add_child(icon_instance)
 	icon_instance.setup(data)
 	icon_instance.icon_double_clicked.connect(_on_icon_open)
@@ -59,23 +77,32 @@ func _on_icon_open(data: FileResource) -> void:
 	taskbar_button.position.x = 120
 	taskbar_grid.add_child(taskbar_button)
 	
+	
+	
 	#dictionary of button icon
 	minimize_icon_to_window[new_window] = taskbar_button
-	
 	taskbar_button.pressed.connect(func(): _control_window_state(new_window, "opened")) #calling to open back up
 	
+	
+	#to be moved to Each of thier own
 	match data.file_type:
 		FileResource.FileType.TEXT:
-			var text_label = Label.new()
-			text_label.text = data.text_content
-			new_window.embed_content(text_label)
+			#open Text Scence
+			var text_content = text_scence.instantiate()
+			new_window.embed_content(text_content)
+			text_content.setup(data)
+
+
 			
 		FileResource.FileType.FOLDER:
-			var folder_grid = GridContainer.new()
-			folder_grid.columns = grid_column
-			new_window.embed_content(folder_grid)
-			for child_file in data.contained_files:
-				create_desktop_icon(child_file, folder_grid)
+			#Open folder Scence
+			var folder_content = folder_scence.instantiate()
+			new_window.embed_content(folder_content)
+			#changing folder name without creating new scnce
+			folder_content.change_window_name.connect(func(file_data): new_window.set_title(file_data.display_name))
+			folder_content.open_new_window.connect(_on_icon_open)
+			
+			folder_content.setup(data, "C:/Desktop/")
 				
 #Control if window is changign size close or minimize
 func _control_window_state(window_node:Node, new_state:String) -> void:

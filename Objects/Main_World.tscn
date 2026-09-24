@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d0pouifvwpkjo"]
+
+[ext_resource type="PackedScene" uid="uid://c2gbwcfp6g1w4" path="res://Objects/Desktop_Manger.tscn" id="2_2o0qa"]
+[ext_resource type="PackedScene" uid="uid://bpi1b8h274k1n" path="res://Objects/Window.tscn" id="2_hfuox"]
+[ext_resource type="PackedScene" uid="uid://doh3itm6jhli" path="res://Objects/Mouse.tscn" id="2_ldsjx"]
+[ext_resource type="PackedScene" uid="uid://dxf7ph5nbl2i4" path="res://Objects/Text_content.tscn" id="3_ags0o"]
+
+[node name="Main" type="Control" unique_id=2124420353]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 27.0
+offset_right = 1922.0
+offset_bottom = 1084.0
+
+[node name="Desktop_manger" parent="." unique_id=118327403 instance=ExtResource("2_2o0qa")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -35.0
+offset_right = 6.0
+offset_bottom = -35.0
+scale = Vector2(1.0044761, 0.9910996)
+window_scene = ExtResource("2_hfuox")
+text_scence = ExtResource("3_ags0o")
+
+[node name="mouse" parent="." unique_id=691309237 instance=ExtResource("2_ldsjx")]
+layout_mode = 0
+offset_left = 0.0
+offset_right = 512.0
+mouse_filter = 2

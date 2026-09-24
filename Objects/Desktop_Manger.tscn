@@ -1,7 +1,26 @@
-[gd_scene format=3 uid="uid://b4thiqqvjktp1"]
+[gd_scene format=3 uid="uid://c2gbwcfp6g1w4"]
 
 [ext_resource type="Script" uid="uid://d1kmbd4dwsnba" path="res://Script/Desktop_Manager.gd" id="1_ukg44"]
-[ext_resource type="PackedScene" uid="uid://b5q4drdvvuvdp" path="res://Objects/MainScreen.tscn" id="2_7xnu4"]
+[ext_resource type="Script" uid="uid://qyt5ctwjqe6u" path="res://Script/Window.gd" id="2_vosj3"]
+[ext_resource type="PackedScene" uid="uid://42lqgwhgm883" path="res://Objects/Desktop_Icon.tscn" id="3_ds4ad"]
+[ext_resource type="PackedScene" uid="uid://b6a2wm3d51h2f" path="res://Objects/Folder_content.tscn" id="4_ukg44"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
+
+[sub_resource type="PackedScene" id="PackedScene_ds4ad"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array(), PackedInt32Array()],
+"names": PackedStringArray("Window", "PanelContainer", "custom_minimum_size", "propagate_maximum_size", "anchors_preset", "anchor_right", "anchor_bottom", "offset_right", "offset_bottom", "scale", "size_flags_horizontal", "size_flags_vertical", "theme_override_styles/panel", "script", "metadata/_edit_use_anchors_", "VBoxContainer", "VBoxContainer", "propagate_maximum_size", "layout_mode", "mouse_filter", "Title", "HBoxContainer", "layout_mode", "mouse_filter", "Minimize", "Button", "custom_minimum_size", "layout_mode", "size_flags_horizontal", "size_flags_vertical", "size_flags_stretch_ratio", "offset_transform_position", "Resize", "Button", "custom_minimum_size", "layout_mode", "size_flags_horizontal", "size_flags_vertical", "size_flags_stretch_ratio", "offset_transform_position", "Close", "Button", "custom_minimum_size", "layout_mode", "size_flags_horizontal", "size_flags_vertical", "size_flags_stretch_ratio", "offset_transform_position", "Label", "Label", "layout_mode", "theme_override_font_sizes/font_size", "MarginContainer", "MarginContainer", "layout_mode"),
+"node_count": 8,
+"node_ids": PackedInt32Array(1218465060, 319052635, 1288542951, 1186658531, 415544912, 1852842317, 321968210, 116529276),
+"node_paths": [NodePath("."), NodePath("./VBoxContainer"), NodePath("./VBoxContainer/Title"), NodePath("./VBoxContainer/Title"), NodePath("./VBoxContainer/Title"), NodePath("./VBoxContainer/Title"), NodePath("./VBoxContainer")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 13, 2, 0, 3, 1, 4, 2, 5, 3, 6, 4, 7, 5, 8, 6, 9, 7, 10, 8, 11, 9, 12, 10, 13, 11, 14, 12, 0, 1073741824, 0, 16, 15, -1, 3, 17, 13, 18, 14, 19, 15, 0, 1073741825, 0, 21, 20, -1, 2, 22, 16, 23, 17, 0, 1073741826, 0, 25, 24, -1, 6, 26, 18, 27, 19, 28, 20, 29, 21, 30, 22, 31, 23, 0, 1073741827, 0, 33, 32, -1, 6, 34, 24, 35, 25, 36, 26, 37, 27, 38, 28, 39, 29, 0, 1073741828, 0, 41, 40, -1, 6, 42, 30, 43, 31, 44, 32, 45, 33, 46, 34, 47, 35, 0, 1073741829, 0, 49, 48, -1, 2, 50, 36, 51, 37, 0, 1073741830, 0, 53, 52, -1, 1, 54, 38, 0),
+"variants": [Vector2(400, 250), false, -1, 0.27497864, 0.14986025, 873.0, 516.0, Vector2(0.9657284, 1.0520145), 0, 4, SubResource("StyleBoxFlat_xrivr"), ExtResource("2_vosj3"), true, false, 2, 0, 2, 0, Vector2(40, 40), 2, 8, 0, 0.0, Vector2(800, 0), Vector2(40, 40), 2, 8, 0, 0.0, Vector2(800, 0), Vector2(40, 40), 2, 8, 0, 0.0, Vector2(800, 0), 2, 35, 2],
+"version": 3
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xnu4"]
 
@@ -9,7 +28,9 @@
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ukg44")
-window_scene = ExtResource("2_7xnu4")
+window_scene = SubResource("PackedScene_ds4ad")
+desktop_icon = ExtResource("3_ds4ad")
+folder_scence = ExtResource("4_ukg44")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=192414224]
 layout_mode = 0

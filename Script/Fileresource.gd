@@ -13,8 +13,4 @@ enum FileType {FOLDER, TEXT, IMAGE, EXECUTABLE}
 
 @export_multiline var text_content: String = "" #Notepad
 @export var contained_files: Array[FileResource] #Folder
-@export var filepath: String = "" #File Directory
-
-
-func _get_full_path() -> String:
-	return filepath + display_name
+var parent_path: FileResource = null #file path for all parent and child links

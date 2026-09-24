@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://8tjcqnwtqcwi"]
+[gd_scene format=3 uid="uid://doh3itm6jhli"]
 
 [ext_resource type="Texture2D" uid="uid://cx0rv4gdkeb1x" path="res://Asset/cursor.png" id="1_8f81w"]
-[ext_resource type="Script" uid="uid://ceplmhumgro3t" path="res://Script/mouse_control.gd" id="1_ob7xq"]
+[ext_resource type="Script" uid="uid://ceplmhumgro3t" path="res://Script/Mouse_control.gd" id="1_ob7xq"]
 
 [node name="mouse" type="TextureRect" unique_id=1091706119]
 offset_left = 7.0

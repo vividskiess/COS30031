@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b5q4drdvvuvdp"]
+[gd_scene format=3 uid="uid://bpi1b8h274k1n"]
 
 [ext_resource type="Script" uid="uid://qyt5ctwjqe6u" path="res://Script/Window.gd" id="1_mw4t3"]
 
@@ -28,6 +28,11 @@ mouse_filter = 0
 layout_mode = 2
 mouse_filter = 0
 
+[node name="Label" type="Label" parent="VBoxContainer/Title" unique_id=321968210]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 35
+
 [node name="Minimize" type="Button" parent="VBoxContainer/Title" unique_id=1186658531]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
@@ -51,10 +56,6 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 size_flags_stretch_ratio = 0.0
 offset_transform_position = Vector2(800, 0)
-
-[node name="Label" type="Label" parent="VBoxContainer/Title" unique_id=321968210]
-layout_mode = 2
-theme_override_font_sizes/font_size = 35
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=116529276]
 layout_mode = 2

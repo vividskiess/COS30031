@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dxf7ph5nbl2i4"]
+
+[ext_resource type="Script" uid="uid://cd55mhogqeyf4" path="res://Script/Text_content.gd" id="1_hdhgx"]
+
+[node name="TextContent" type="Control" unique_id=1194763444]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hdhgx")
+
+[node name="Label" type="Label" parent="." unique_id=1894376198]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
