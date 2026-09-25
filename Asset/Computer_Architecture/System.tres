@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://u250dq8vad03"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_ql8wm"]
+[ext_resource type="Resource" uid="uid://ckvaavs7x3yc3" path="res://Asset/Computer_Architecture/System/Log.tres" id="2_4gai2"]
+[ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="2_ofcux"]
+[ext_resource type="Resource" uid="uid://cqklmoq18atsm" path="res://Asset/Computer_Architecture/System/Driver.tres" id="3_4gai2"]
+
+[resource]
+script = ExtResource("1_ql8wm")
+display_name = "System"
+icon_texture = ExtResource("2_ofcux")
+file_type = 0
+contained_files = Array[ExtResource("1_ql8wm")]([ExtResource("2_4gai2"), ExtResource("3_4gai2")])
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

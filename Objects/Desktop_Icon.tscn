@@ -5,10 +5,10 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xrivr"]
 
 [node name="DesktopIcon" type="Button" unique_id=776160744]
-offset_left = -30.0
-offset_top = -28.0
-offset_right = 35.0
-offset_bottom = 32.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 66.0
+offset_bottom = 59.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_xrivr")
 script = ExtResource("1_op00i")
 

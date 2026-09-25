@@ -9,5 +9,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_position = get_global_mouse_position()
 	snapped_pos.emit(global_position)	
+
+
 	
 	

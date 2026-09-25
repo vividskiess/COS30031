@@ -5,6 +5,7 @@ extends Control
 @export var folder_scence: PackedScene
 @export var text_scence: PackedScene
 
+
 #export var application_scence: PackedScence?
 
 @onready var desktop_files: Array[FileResource] = []
@@ -19,8 +20,8 @@ signal windows_content(window_node: Node)
 #Window node -> Button
 var minimize_icon_to_window: Dictionary = {}
 
-#Default Desktop Directory
-var desktop_path: String = "C:/Desktop"
+#to be changed to array to be used as multiple select
+var is_selected: FileResource = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,13 +34,27 @@ func _ready() -> void:
 			link_to_parent(file_res)
 	for file_res in desktop_files:
 		create_desktop_icon(file_res, icon_grid)
+		
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_selected = null
+			
+		_deselect_all_icon()
+			
+
+func _deselect_all_icon() -> void:
+	for child in icon_grid.get_children():
+		if child.has_method("deselect"):
+			child.deselect()
 
 
 #Changing grid main window
 func _icon_grid_setup() -> void:
-	#Desktop_grid seperation
+	#Desktop_grid sepeartion
+	
 	icon_grid.columns = grid_column
-	icon_grid.add_theme_constant_override("h_separation", 100)
+	icon_grid.add_theme_constant_override("h_separation", 150)
 	icon_grid.add_theme_constant_override("v_separation",100)
 	
 	#icon_grid seperation
@@ -52,7 +67,7 @@ func link_to_parent(parent: FileResource):
 		child.parent_path = parent
 		if child.file_type == FileResource.FileType.FOLDER:
 			link_to_parent(child)
-	
+			
 	
 #intiate desktop
 func create_desktop_icon(data: FileResource, parent_grid: GridContainer) -> void:
@@ -60,6 +75,7 @@ func create_desktop_icon(data: FileResource, parent_grid: GridContainer) -> void
 	parent_grid.add_child(icon_instance)
 	icon_instance.setup(data)
 	icon_instance.icon_double_clicked.connect(_on_icon_open)
+	icon_instance.icon_selected.connect(_on_icon_selected)
 	
 	
 #Opening Window Scence
@@ -68,13 +84,11 @@ func _on_icon_open(data: FileResource) -> void:
 	add_child(new_window)
 	new_window.set_title(data.display_name)
 	new_window.state.connect(_control_window_state) #connects with window to change open, close. minimize
-	
-	
+
 	#creating mini button in taskbar
 	var taskbar_button = Button.new()
 	taskbar_button.icon = data.icon_texture
 	taskbar_button.custom_minimum_size = Vector2(64,64) #size of icon in minimize mode
-	taskbar_button.position.x = 120
 	taskbar_grid.add_child(taskbar_button)
 	
 	
@@ -124,8 +138,14 @@ func _control_window_state(window_node:Node, new_state:String) -> void:
 				window_node.show()
 				window_node.move_to_front()
 				
-
+				
+func _on_icon_selected(selectedData: FileResource) -> void:
+	is_selected = selectedData
 	
+	for child in icon_grid.get_children():
+		if child.has_method("deselect") and child.file_data != selectedData:
+			child.deselect()
+
 
 #load up all icon in desktop like windows
 func _preload_desktop(path: String) -> void:
@@ -138,6 +158,8 @@ func _preload_desktop(path: String) -> void:
 		
 		if load_res is FileResource:
 			desktop_files.append(load_res)
+			
+
 	
 
 		

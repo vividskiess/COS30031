@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://lk08txpuc40p"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_c66me"]
+[ext_resource type="Texture2D" uid="uid://bi4xw8n23rjr6" path="res://Asset/notes.png" id="2_j1vx2"]
+
+[resource]
+script = ExtResource("1_c66me")
+display_name = "Work"
+icon_texture = ExtResource("2_j1vx2")
+text_content = "Things I have to do Today:
+- Fix Broken OS
+-Remove Virus
+- Buy Speghetti
+-Walk the dog
+- Build ChatPTG"
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

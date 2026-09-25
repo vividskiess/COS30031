@@ -25,6 +25,7 @@ _bundled = {
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xnu4"]
 
 [node name="Desktop_manger" type="Control" unique_id=118327403]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ukg44")
@@ -37,7 +38,7 @@ layout_mode = 0
 offset_left = -5.0
 offset_right = 1913.0
 offset_bottom = 1082.0
-color = Color(0.23137255, 1, 1, 1)
+color = Color(0.080909036, 0.41457087, 0.9182877, 1)
 
 [node name="Taskbar" type="HBoxContainer" parent="." unique_id=2057635650]
 layout_mode = 0
@@ -86,5 +87,5 @@ vertical_alignment = 1
 layout_mode = 0
 offset_left = -2.0
 offset_top = 1.0
-offset_right = -2.0
-offset_bottom = 81.0
+offset_right = 1913.0
+offset_bottom = 1005.0

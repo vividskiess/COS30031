@@ -15,10 +15,10 @@ offset_bottom = 1084.0
 
 [node name="Desktop_manger" parent="." unique_id=118327403 instance=ExtResource("2_2o0qa")]
 layout_mode = 0
-offset_left = 6.0
-offset_top = -35.0
-offset_right = 6.0
-offset_bottom = -35.0
+offset_left = 1.0000005
+offset_top = -30.0
+offset_right = 1.0000005
+offset_bottom = -30.0
 scale = Vector2(1.0044761, 0.9910996)
 window_scene = ExtResource("2_hfuox")
 text_scence = ExtResource("3_ags0o")

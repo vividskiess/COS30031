@@ -5,16 +5,20 @@
 
 [node name="Folder_Content" type="Control" unique_id=335897603]
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.453
+anchor_bottom = 0.26500002
+offset_left = 1.0
+offset_right = -868.76
+offset_bottom = -286.2
 script = ExtResource("1_5ksw5")
 icon_scence = ExtResource("2_s05o6")
 
 [node name="Content_container" type="GridContainer" parent="." unique_id=694454617]
 layout_mode = 0
 offset_left = 1.0
-offset_top = 74.0
-offset_right = 41.0
-offset_bottom = 114.0
+offset_top = 75.0
+offset_right = 869.0
+offset_bottom = 335.0
 
 [node name="Directory_display" type="LineEdit" parent="." unique_id=1906177310]
 layout_mode = 0

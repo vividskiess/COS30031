@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://c4vrj0gm8u28"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_jfrfk"]
+[ext_resource type="Resource" uid="uid://dfs87nl1prdcj" path="res://Asset/Computer_Architecture/Document/Password.tres" id="2_cwas7"]
+[ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="3_cwas7"]
+[ext_resource type="Resource" uid="uid://df7fs0t5brhp" path="res://Asset/Computer_Architecture/Document/Resume.tres" id="3_oqj62"]
+[ext_resource type="Resource" uid="uid://b4yx2pmmub1lw" path="res://Asset/Computer_Architecture/Document/Taxes.tres" id="4_nyaqr"]
+
+[resource]
+script = ExtResource("1_jfrfk")
+display_name = "Document"
+icon_texture = ExtResource("3_cwas7")
+file_type = 0
+contained_files = Array[ExtResource("1_jfrfk")]([ExtResource("2_cwas7"), ExtResource("3_oqj62"), ExtResource("4_nyaqr")])
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

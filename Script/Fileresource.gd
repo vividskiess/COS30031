@@ -3,7 +3,7 @@ extends Resource
 
 #Todo File type checking for Directory
 
-enum FileType {FOLDER, TEXT, IMAGE, EXECUTABLE}
+enum FileType {FOLDER, TEXT, IMAGE, EXECUTABLE, MALICOUS}
 
 
 @export var display_name: String = "New File"

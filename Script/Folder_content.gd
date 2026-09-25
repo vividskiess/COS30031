@@ -13,7 +13,13 @@ signal change_window_name(file_data: FileResource)
 #current folder position (Opened by the user)
 var current_folder: FileResource
 
+#grid amount for folder
+var folder_column = 7 
+
 var base_path : String = ""
+
+var is_selected: FileResource = null
+
 
 
 #keep track of every folder list
@@ -42,6 +48,23 @@ func _update_bar_path()->void:
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_button_pressed)
 	forward_button.pressed.connect(_on_forward_button_pressed)
+	_grid_setup() #folder grid
+	
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			is_selected = null
+			
+			_deselect_all_icon()
+
+func _deselect_all_icon() -> void:
+	for child in folder_grid.get_children():
+		if child.has_method("deselect"):
+			child.deselect()
+	
+func _grid_setup() -> void: #folder adjustment
+	folder_grid.columns = folder_column
+	folder_grid.add_theme_constant_override("h_separation", 100)
 
 func setup(folder_data: FileResource, starting_path: String) -> void:
 	base_path = starting_path
@@ -68,8 +91,10 @@ func _load_folder(new_folder: FileResource) -> void:
 		icon.setup(file)
 	
 		icon.icon_double_clicked.connect(_on_folder_clicked)
+		icon.icon_selected.connect(_on_selected_icon)
 
 func _on_folder_clicked(file_data: FileResource) -> void:
+	
 	if file_data.file_type == FileResource.FileType.FOLDER:
 		back_history.append(current_folder)
 		forward_history.clear() #clear any forward movement
@@ -77,6 +102,13 @@ func _on_folder_clicked(file_data: FileResource) -> void:
 	
 	else:
 		open_new_window.emit(file_data)
+		
+func _on_selected_icon(Selecteddata: FileResource) -> void:
+	is_selected = Selecteddata
+	
+	for child in folder_grid.get_children():
+		if child.has_method("deselect") and child.file_data != is_selected:
+			child.deselect()
 		
 #Bi-directional Linked list to keep track of folder and position
 func _on_back_button_pressed() -> void:
