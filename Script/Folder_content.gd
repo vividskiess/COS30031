@@ -9,6 +9,7 @@ signal change_window_name(file_data: FileResource)
 @onready var back_button = $Back
 @onready var forward_button = $Forward
 @onready var directory_bar = $Directory_display
+@onready var popup = RightClickMenu
 
 #current folder position (Opened by the user)
 var current_folder: FileResource
@@ -124,4 +125,18 @@ func _on_forward_button_pressed() -> void:
 		_load_folder(forward_folder)
 	pass
 		
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return data is FileResource
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	var old_folder = data.parent_path
+	var new_folder = current_folder
 	
+	FileSys.move_file(data, old_folder, new_folder)
+	
+	_refresh_grid()
+
+func _refresh_grid() -> void:
+	if current_folder != null:
+		_load_folder(current_folder)

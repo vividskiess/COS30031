@@ -22,3 +22,6 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer" unique_id=1376058238]
 layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1158902910]
+layout_mode = 2

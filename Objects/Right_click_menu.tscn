@@ -11,3 +11,5 @@ offset_bottom = -97.200005
 script = ExtResource("1_xlptc")
 
 [node name="PopupMenu" type="PopupMenu" parent="." unique_id=917841194]
+oversampling_override = 1.0
+visible = true

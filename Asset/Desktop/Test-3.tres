@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://cjv4rrdb0owfa"]
 
 [ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_7n6bv"]
-[ext_resource type="Resource" uid="uid://cu6jgyhs6ung2" path="res://Asset/Desktop/ReadMe.tres" id="2_rnfwq"]
 [ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="3_vv3h2"]
 
 [resource]
@@ -9,5 +8,4 @@ script = ExtResource("1_7n6bv")
 display_name = "New_fFolder"
 icon_texture = ExtResource("3_vv3h2")
 file_type = 0
-contained_files = Array[ExtResource("1_7n6bv")]([ExtResource("2_rnfwq")])
 metadata/_custom_type_script = "uid://b01bfjknjm6rf"

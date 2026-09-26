@@ -46,3 +46,10 @@ func _select_icon() -> void:
 func deselect() -> void:
 	is_selected = false
 	modulate = Color(1.0, 1.0, 1.0)
+	
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var preview = TextureRect.new()
+	preview.texture = file_data.icon_texture
+	set_drag_preview(preview)
+	
+	return file_data
