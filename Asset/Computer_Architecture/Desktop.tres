@@ -2,14 +2,15 @@
 
 [ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_q07h3"]
 [ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="2_0ma8g"]
-[ext_resource type="Resource" uid="uid://cu6jgyhs6ung2" path="res://Asset/Desktop/ReadMe.tres" id="2_t8vdx"]
-[ext_resource type="Resource" uid="uid://cxwsuony4x2gt" path="res://Asset/Desktop/Recycling_Bin.tres" id="3_m4bv1"]
-[ext_resource type="Resource" uid="uid://lk08txpuc40p" path="res://Asset/Desktop/ToDoList.tres" id="4_bn80f"]
+[ext_resource type="Resource" uid="uid://cu6jgyhs6ung2" path="res://Asset/Computer_Architecture/Desktop/ReadMe.tres" id="2_t8vdx"]
+[ext_resource type="Resource" uid="uid://cxwsuony4x2gt" path="res://Asset/Computer_Architecture/Desktop/Recycling_Bin.tres" id="3_m4bv1"]
+[ext_resource type="Resource" uid="uid://lk08txpuc40p" path="res://Asset/Computer_Architecture/Desktop/ToDoList.tres" id="4_bn80f"]
+[ext_resource type="Resource" uid="uid://cbi6o778pvfvb" path="res://Asset/Computer_Architecture/Desktop/Main.tres" id="5_m4bv1"]
 
 [resource]
 script = ExtResource("1_q07h3")
 display_name = "Desktop"
 icon_texture = ExtResource("2_0ma8g")
 file_type = 0
-contained_files = Array[ExtResource("1_q07h3")]([ExtResource("2_t8vdx"), ExtResource("3_m4bv1"), ExtResource("4_bn80f")])
+contained_files = Array[ExtResource("1_q07h3")]([ExtResource("2_t8vdx"), ExtResource("3_m4bv1"), ExtResource("4_bn80f"), ExtResource("5_m4bv1")])
 metadata/_custom_type_script = "uid://b01bfjknjm6rf"

@@ -2,14 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6u3gi4wgrwgx" path="res://Script/right_click_menu.gd" id="1_xlptc"]
 
-[node name="RightClickMenu" type="Control" unique_id=643122458]
-layout_mode = 3
-anchor_right = 0.053000003
-anchor_bottom = 0.09
-offset_right = -101.76001
-offset_bottom = -97.200005
-script = ExtResource("1_xlptc")
-
-[node name="PopupMenu" type="PopupMenu" parent="." unique_id=917841194]
+[node name="RightClickMenu" type="PopupMenu" unique_id=267627404]
 oversampling_override = 1.0
 visible = true
+script = ExtResource("1_xlptc")

@@ -24,4 +24,5 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1158902910]
+visible = false
 layout_mode = 2

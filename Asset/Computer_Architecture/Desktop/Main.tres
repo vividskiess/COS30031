@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://cbi6o778pvfvb"]
 
 [ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_b0hbv"]
-[ext_resource type="Resource" uid="uid://caxo3sgbkx4kb" path="res://Asset/Computer_Architecture/Desktop.tres" id="2_nkrts"]
 [ext_resource type="Resource" uid="uid://u250dq8vad03" path="res://Asset/Computer_Architecture/System.tres" id="3_s24li"]
 [ext_resource type="Resource" uid="uid://c4vrj0gm8u28" path="res://Asset/Computer_Architecture/Document.tres" id="4_fws24"]
 [ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="5_p6rsj"]
@@ -11,5 +10,5 @@ script = ExtResource("1_b0hbv")
 display_name = "Main"
 icon_texture = ExtResource("5_p6rsj")
 file_type = 0
-contained_files = Array[ExtResource("1_b0hbv")]([ExtResource("2_nkrts"), ExtResource("3_s24li"), ExtResource("4_fws24")])
+contained_files = Array[ExtResource("1_b0hbv")]([ExtResource("3_s24li"), ExtResource("4_fws24")])
 metadata/_custom_type_script = "uid://b01bfjknjm6rf"

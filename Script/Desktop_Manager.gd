@@ -9,9 +9,6 @@ extends Control
 #export var application_scence: PackedScence?
 
 @onready var desktop_files: Array[FileResource] = []
-@onready var grid_column: int = 4
-@onready var Taskbar_grid: int = 5
-
 @onready var icon_grid: GridContainer = $IconGrid
 @onready var taskbar_grid = $Taskbar/Panel/TaskbarGrid
 
@@ -23,17 +20,26 @@ var minimize_icon_to_window: Dictionary = {}
 #to be changed to array to be used as multiple select
 var is_selected: FileResource = null
 
+var desktop_folder : FileResource
+
+#testing grid
+var grid_column: int = 4
+var Taskbar_grid: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_preload_desktop("res://Asset/Desktop/")
+	
 	_icon_grid_setup()
 	
-	for file_res in desktop_files:
-		if file_res.file_type == FileResource.FileType.FOLDER:
-			link_to_parent(file_res)
-	for file_res in desktop_files:
-		create_desktop_icon(file_res, icon_grid)
+	desktop_folder = FileSys.desktop_folder
+	
+	link_to_parent(desktop_folder)
+	
+	_refresh_grid()
+	
+	RightClickMenu.request_refresh.connect(_on_menu_refresh)
+	RightClickMenu.request_rename.connect(_on_menu_rename_request)
+	
 		
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
@@ -41,6 +47,9 @@ func _gui_input(event: InputEvent) -> void:
 			is_selected = null
 			
 		_deselect_all_icon()
+		
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			RightClickMenu._open_menu(desktop_folder, get_global_mouse_position(), null)
 			
 
 func _deselect_all_icon() -> void:
@@ -90,8 +99,6 @@ func _on_icon_open(data: FileResource) -> void:
 	taskbar_button.icon = data.icon_texture
 	taskbar_button.custom_minimum_size = Vector2(64,64) #size of icon in minimize mode
 	taskbar_grid.add_child(taskbar_button)
-	
-	
 	
 	#dictionary of button icon
 	minimize_icon_to_window[new_window] = taskbar_button
@@ -146,20 +153,40 @@ func _on_icon_selected(selectedData: FileResource) -> void:
 		if child.has_method("deselect") and child.file_data != selectedData:
 			child.deselect()
 
-
-#load up all icon in desktop like windows
-func _preload_desktop(path: String) -> void:
+func _refresh_grid() -> void:
+	for child in icon_grid.get_children():
+		child.queue_free()
 	
-	var  file_name = ResourceLoader.list_directory(path)
-	
-	for file_names in file_name:
-		var full_path = path.path_join(file_names)
-		var load_res = load(full_path)
+	for file_res in desktop_folder.contained_files:
+		create_desktop_icon(file_res, icon_grid)
 		
-		if load_res is FileResource:
-			desktop_files.append(load_res)
-			
-
-	
-
+func _on_menu_refresh(modified_folder: FileResource)->void:
+	if modified_folder == desktop_folder:
+		_refresh_grid()
+		await get_tree().process_frame
+		var icons = icon_grid.get_children()
+		if icons.size() > 0:
+			var new_icon = icons[-1]
+			if new_icon.has_method("_start_renaming"):
+				new_icon._start_renaming()
+					
+func _on_menu_rename_request() -> void:
+	if is_selected != null:
 		
+		for child in icon_grid.get_children():
+			if child.file_data == is_selected:
+				if child.has_method("_start_renaming"):
+					child._start_renaming(	)
+					
+				
+
+func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	return data is FileResource
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var old_folder = data.parent_path
+	var new_folder = desktop_folder
+	FileSys.move_file(data, old_folder, new_folder)
+	_refresh_grid()
+	get_tree().reload_current_scene()
+	
