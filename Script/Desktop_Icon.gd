@@ -22,6 +22,8 @@ func _ready() -> void:
 	change_file_name.focus_exited.connect(func(): _on_rename_submit(change_file_name.text))
 	
 	
+	
+	
 #Changing the colour to signifty hovering over it
 func _on_mouse_entered() -> void: # need to add select and hovering animation soon
 	if not is_selected:

@@ -19,6 +19,8 @@ config/icon="res://Asset/icon.svg"
 
 FileSys="*uid://dk42gv0lhtwpk"
 RightClickMenu="*uid://in75jq0bwg7c"
+Clock="*uid://dao24h3p2bt3h"
+InfectionManager="*uid://ckr7we6anrm3k"
 
 [display]
 

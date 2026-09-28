@@ -11,7 +11,7 @@ signal change_window_name(file_data: FileResource)
 @onready var directory_bar = $Directory_display
 
 #current folder position (Opened by the user)
-var current_folder = FileResource
+var current_folder:FileResource
 
 var folder_column = 7 #folder grid
 var base_path : String = "" #building directory
@@ -128,7 +128,8 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var new_folder = current_folder
 	FileSys.move_file(data, old_folder, new_folder)
 	_refresh_grid()
-	get_tree().reload_current_scene() #reload scence for folder
+	RightClickMenu.request_refresh.emit(old_folder)
+
 	
 func _refresh_grid() -> void:
 	if current_folder != null:
@@ -142,11 +143,11 @@ func _on_menu_refresh(modified_folder: FileResource)->void:
 		
 		await get_tree().process_frame
 		
-		var icons = folder_grid.get_children()
-		if icons.size() > 0:
-			var new_icon = icons[-1]
-			if new_icon.has_method("_start_renaming"):
-				new_icon._start_renaming()
+		#var icons = folder_grid.get_children()
+		#if icons.size() > 0:
+			#var new_icon = icons[-1]
+			#if new_icon.has_method("_start_renaming"):
+				#new_icon._start_renaming()
 				
 func _on_menu_rename_request() -> void:
 	if is_selected != null:
@@ -154,6 +155,6 @@ func _on_menu_rename_request() -> void:
 		for child in folder_grid.get_children():
 			if child.file_data == is_selected:
 				if child.has_method("_start_renaming"):
-					child._start_renaming(	)
+					child._start_renaming()
 					
 				

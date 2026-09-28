@@ -14,6 +14,8 @@ func _ready() -> void:
 
 func _intialize_system() -> void:
 	desktop_folder = load("res://Asset/Computer_Architecture/Desktop.tres")
+	
+	#old desktop load sys
 	#desktop_folder = FileResource.new()
 	#desktop_folder.display_name = "Desktop"
 	#desktop_folder.file_type = FileResource.FileType.FOLDER
@@ -41,7 +43,7 @@ func get_file_in_folder(path:String) -> Array:
 	return []
 
 func move_file(file: FileResource, old_folder: FileResource, new_folder:FileResource) -> void:
-	old_folder.contained_files.erase(file)
+	old_folder.contained_files.erase(file)	
 	new_folder.contained_files.append(file)
 	file.parent_path = new_folder
 
@@ -74,5 +76,13 @@ func paste_file(target_folder: FileResource)->void:
 		new_file.parent_path = target_folder
 		
 		target_folder.contained_files.append(new_file)
+		
+func get_all_file_in_folder_for_scan(current_folder: FileResource) -> Array[FileResource]:
+	var found_files: Array[FileResource] = []
+	for item in current_folder.contained_files:
+		if item.file_type != FileResource.FileType.FOLDER: #ensure its not sending folder as well
+			found_files.append(item)
+		
+	return found_files
 	
 	

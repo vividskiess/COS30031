@@ -7,13 +7,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_hdhgx")
 
-[node name="Label" type="Label" parent="." unique_id=1894376198]
+[node name="Text_edit" type="TextEdit" parent="." unique_id=1772425043]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="LineEdit" type="LineEdit" parent="." unique_id=1147884682]
-visible = false
-layout_mode = 0
-offset_right = 68.5
-offset_bottom = 31.0
+offset_right = 935.0
+offset_bottom = 451.0
