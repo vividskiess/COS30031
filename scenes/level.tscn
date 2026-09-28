@@ -1,105 +1,21 @@
 [gd_scene format=3 uid="uid://boyerhl0b557u"]
 
-[ext_resource type="Texture2D" uid="uid://ddy2c4m3qt6aa" path="res://assets/minigame/maze_00.png" id="1_arp2o"]
-[ext_resource type="Texture2D" uid="uid://dw38e3a12wv8p" path="res://assets/minigame/maze_01.png" id="2_ux5qa"]
-[ext_resource type="Texture2D" uid="uid://k35fe7566ogy" path="res://assets/minigame/maze_10.png" id="3_82cfe"]
-[ext_resource type="Texture2D" uid="uid://e63rjvhm0lbg" path="res://assets/minigame/maze_11.png" id="4_gunhw"]
-[ext_resource type="Texture2D" uid="uid://dc40l7p0dj1fj" path="res://assets/minigame/maze_12.png" id="5_8gofh"]
-[ext_resource type="Texture2D" uid="uid://bolq70typanht" path="res://assets/minigame/maze_13.png" id="6_h6wmr"]
-[ext_resource type="Texture2D" uid="uid://k4fr5dcdbloh" path="res://assets/minigame/maze_14.png" id="7_pqd0y"]
-[ext_resource type="Texture2D" uid="uid://dohgqycig7kme" path="res://assets/minigame/maze_15.png" id="8_5k0ak"]
-[ext_resource type="Texture2D" uid="uid://iuvms51lwxyg" path="res://assets/minigame/maze_02.png" id="9_wu01b"]
-[ext_resource type="Texture2D" uid="uid://dku3rih1mco8t" path="res://assets/minigame/maze_03.png" id="10_3ies3"]
-[ext_resource type="Texture2D" uid="uid://cuvveq67d0720" path="res://assets/minigame/maze_04.png" id="11_xy2fk"]
-[ext_resource type="Texture2D" uid="uid://7lxfbmico8vd" path="res://assets/minigame/maze_05.png" id="12_cmcjb"]
-[ext_resource type="Texture2D" uid="uid://cwhie4bt8xcbm" path="res://assets/minigame/maze_06.png" id="13_556r4"]
-[ext_resource type="Texture2D" uid="uid://ce8noe26siuyi" path="res://assets/minigame/maze_07.png" id="14_7agi7"]
-[ext_resource type="Texture2D" uid="uid://puef7bp6rr4y" path="res://assets/minigame/maze_08.png" id="15_kih21"]
-[ext_resource type="Texture2D" uid="uid://c64if1kbdqm16" path="res://assets/minigame/maze_09.png" id="16_w3o6u"]
+[ext_resource type="Script" uid="uid://bcfsc7y16r4cc" path="res://scripts/level.gd" id="1_ux5qa"]
+[ext_resource type="Texture2D" uid="uid://bakrgeo14o2t3" path="res://assets/minigame/path_and_wall.png" id="2_w8frs"]
+[ext_resource type="PackedScene" uid="uid://dixuoy8uubxwi" path="res://scenes/player.tscn" id="18_82cfe"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2e2fo"]
-texture = ExtResource("1_arp2o")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mx8sn"]
+texture = ExtResource("2_w8frs")
 0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gur6y"]
-texture = ExtResource("2_ux5qa")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v3why"]
-texture = ExtResource("3_82cfe")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_asl66"]
-texture = ExtResource("4_gunhw")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2jdvr"]
-texture = ExtResource("5_8gofh")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q4oe8"]
-texture = ExtResource("6_h6wmr")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_svjb4"]
-texture = ExtResource("7_pqd0y")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c1pbi"]
-texture = ExtResource("8_5k0ak")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_535f6"]
-texture = ExtResource("9_wu01b")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_50fbu"]
-texture = ExtResource("10_3ies3")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0fmhk"]
-texture = ExtResource("11_xy2fk")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iafhg"]
-texture = ExtResource("12_cmcjb")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cr74b"]
-texture = ExtResource("13_556r4")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uhfbm"]
-texture = ExtResource("14_7agi7")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lqb7q"]
-texture = ExtResource("15_kih21")
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ok3ci"]
-texture = ExtResource("16_w3o6u")
-0:0/0 = 0
+1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_bntgb"]
-sources/0 = SubResource("TileSetAtlasSource_2e2fo")
-sources/1 = SubResource("TileSetAtlasSource_gur6y")
-sources/2 = SubResource("TileSetAtlasSource_535f6")
-sources/3 = SubResource("TileSetAtlasSource_50fbu")
-sources/4 = SubResource("TileSetAtlasSource_0fmhk")
-sources/5 = SubResource("TileSetAtlasSource_iafhg")
-sources/6 = SubResource("TileSetAtlasSource_cr74b")
-sources/7 = SubResource("TileSetAtlasSource_uhfbm")
-sources/8 = SubResource("TileSetAtlasSource_lqb7q")
-sources/9 = SubResource("TileSetAtlasSource_ok3ci")
-sources/10 = SubResource("TileSetAtlasSource_v3why")
-sources/11 = SubResource("TileSetAtlasSource_asl66")
-sources/12 = SubResource("TileSetAtlasSource_2jdvr")
-sources/13 = SubResource("TileSetAtlasSource_q4oe8")
-sources/14 = SubResource("TileSetAtlasSource_svjb4")
-sources/15 = SubResource("TileSetAtlasSource_c1pbi")
+sources/0 = SubResource("TileSetAtlasSource_mx8sn")
 
 [node name="Level" type="Node2D" unique_id=1918718168]
+script = ExtResource("1_ux5qa")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1830873438]
 tile_set = SubResource("TileSet_bntgb")
+
+[node name="Player" parent="." unique_id=206688917 instance=ExtResource("18_82cfe")]

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var screen_size = get_viewport_rect().size # Get screen size (480x270, 960x540) values.
 
 # Adjustable variables in inspector w/ default values.
-@export var move_speed: float = 100.0 # Movement speed.
+@export var move_speed: float = 200.0 # Movement speed.
 
 # All other variables.
 var has_key = false # Flag for level key.
