@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://2uckp6ik2hs8" path="res://Script/Folder_content.gd" id="1_5ksw5"]
 [ext_resource type="PackedScene" uid="uid://42lqgwhgm883" path="res://Objects/Desktop_Icon.tscn" id="2_s05o6"]
-[ext_resource type="Texture2D" uid="uid://7m881xdjgx2s" path="res://UI/Assets/Icons/back.svg" id="3_back"]
-[ext_resource type="Texture2D" uid="uid://cf7wo2ccsrowq" path="res://UI/Assets/Icons/forward.svg" id="4_fwd"]
+[ext_resource type="Texture2D" uid="uid://7m881xdjgx2s" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Left/SVG/ic_fluent_arrow_left_20_regular_white.svg" id="3_back"]
+[ext_resource type="Texture2D" uid="uid://cf7wo2ccsrowq" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Right/SVG/ic_fluent_arrow_right_20_regular_white.svg" id="4_fwd"]
 
 [node name="Folder_Content" type="Control" unique_id=335897603]
 layout_mode = 3

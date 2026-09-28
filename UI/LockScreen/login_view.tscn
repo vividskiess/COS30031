@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://j1u05qk4e7v2"]
+
+[ext_resource type="Texture2D" uid="uid://wv6lehbdodgp" path="res://UI/Assets/Icons/avatar.svg" id="1_l2g1e"]
+[ext_resource type="Texture2D" uid="uid://cf7wo2ccsrowq" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Right/SVG/ic_fluent_arrow_right_20_regular_white.svg" id="2_5gdh4"]
+[ext_resource type="Texture2D" uid="uid://dhnfdc1thtopn" path="res://UI/Assets/Icons/FluentUI-system-icons/Power/SVG/ic_fluent_power_20_regular_white.svg" id="4_34x7w"]
+
+[node name="LoginView" type="Control" unique_id=26811691]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="VBoxContainer" parent="." unique_id=865586794]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -250.0
+offset_right = 220.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="AvatarFrame" type="PanelContainer" parent="Card" unique_id=996307774]
+unique_name_in_owner = true
+self_modulate = Color(0.45, 0.47, 0.52, 1)
+clip_children = 2
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_type_variation = &"AvatarFrame"
+
+[node name="Avatar" type="TextureRect" parent="Card/AvatarFrame" unique_id=194697294]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_l2g1e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UserName" type="Label" parent="Card" unique_id=699658896]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LockUserLabel"
+text = "User"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="Card" unique_id=2125665742]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LockCaptionLabel"
+text = "Role"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Card" unique_id=1843357075]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PinRow" type="HBoxContainer" parent="Card" unique_id=1436372016]
+custom_minimum_size = Vector2(296, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 4
+
+[node name="Pin" type="LineEdit" parent="Card/PinRow" unique_id=1899753843]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PinBox"
+placeholder_text = "PIN"
+max_length = 32
+context_menu_enabled = false
+caret_blink = true
+secret = true
+
+[node name="Submit" type="Button" parent="Card/PinRow" unique_id=559174776]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+tooltip_text = "Sign in"
+focus_mode = 0
+theme_type_variation = &"PinSubmitButton"
+icon = ExtResource("2_5gdh4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="UserList" type="VBoxContainer" parent="." unique_id=700796314]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -240.0
+offset_right = 344.0
+offset_bottom = -24.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="Tray" type="HBoxContainer" parent="." unique_id=1658207281]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -68.0
+offset_right = -20.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="Power" type="Button" parent="Tray" unique_id=927701884]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Power"
+focus_mode = 0
+theme_type_variation = &"LockIconButton"
+icon = ExtResource("4_34x7w")

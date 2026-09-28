@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://w2ik18r45bxu"]
+
+[ext_resource type="Theme" uid="uid://btnemj5b5j6fj" path="res://UI/LockScreen/lock_screen.tres" id="1_theme"]
+[ext_resource type="Texture2D" uid="uid://wv6lehbdodgp" path="res://UI/Assets/Icons/avatar.svg" id="3_kiiev"]
+[ext_resource type="Shader" uid="uid://dykeynfpvy6rs" path="res://UI/LockScreen/lock_wallpaper.gdshader" id="3_wall"]
+[ext_resource type="Texture2D" uid="uid://cf7wo2ccsrowq" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Right/SVG/ic_fluent_arrow_right_20_regular_white.svg" id="4_fyjqd"]
+[ext_resource type="Texture2D" uid="uid://dhnfdc1thtopn" path="res://UI/Assets/Icons/FluentUI-system-icons/Power/SVG/ic_fluent_power_20_regular_white.svg" id="6_1mpno"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wall"]
+shader = ExtResource("3_wall")
+shader_parameter/base_color = Color(0.012, 0.027, 0.086, 1)
+shader_parameter/glow_color = Color(0.06, 0.3, 0.82, 1)
+shader_parameter/core_color = Color(0.45, 0.72, 1, 1)
+shader_parameter/center = Vector2(0.5, 0.6)
+shader_parameter/radius = 0.65
+
+[node name="Lock_Screen" type="Control" unique_id=1003057490]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_theme")
+
+[node name="Wallpaper" type="ColorRect" parent="." unique_id=1509522102]
+material = SubResource("ShaderMaterial_wall")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.07, 0.18, 1)
+
+[node name="LoginView" type="Control" parent="." unique_id=26811691]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Card" type="VBoxContainer" parent="LoginView" unique_id=865586794]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -250.0
+offset_right = 220.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="AvatarFrame" type="PanelContainer" parent="LoginView/Card" unique_id=996307774]
+self_modulate = Color(0.45, 0.47, 0.52, 1)
+clip_children = 2
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_type_variation = &"AvatarFrame"
+
+[node name="Avatar" type="TextureRect" parent="LoginView/Card/AvatarFrame" unique_id=194697294]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_kiiev")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UserName" type="Label" parent="LoginView/Card" unique_id=699658896]
+layout_mode = 2
+theme_type_variation = &"LockUserLabel"
+text = "User"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="LoginView/Card" unique_id=2125665742]
+layout_mode = 2
+theme_type_variation = &"LockCaptionLabel"
+text = "Role"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="LoginView/Card" unique_id=1843357075]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PinRow" type="HBoxContainer" parent="LoginView/Card" unique_id=1436372016]
+custom_minimum_size = Vector2(296, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 4
+
+[node name="Pin" type="LineEdit" parent="LoginView/Card/PinRow" unique_id=1899753843]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PinBox"
+placeholder_text = "PIN"
+max_length = 32
+context_menu_enabled = false
+caret_blink = true
+secret = true
+
+[node name="Submit" type="Button" parent="LoginView/Card/PinRow" unique_id=559174776]
+custom_minimum_size = Vector2(38, 38)
+layout_mode = 2
+tooltip_text = "Sign in"
+focus_mode = 0
+theme_type_variation = &"PinSubmitButton"
+icon = ExtResource("4_fyjqd")
+icon_alignment = 1
+expand_icon = true
+
+[node name="UserList" type="VBoxContainer" parent="LoginView" unique_id=700796314]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -240.0
+offset_right = 344.0
+offset_bottom = -24.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="Tray" type="HBoxContainer" parent="LoginView" unique_id=1658207281]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -68.0
+offset_right = -20.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="Power" type="Button" parent="LoginView/Tray" unique_id=927701884]
+layout_mode = 2
+tooltip_text = "Power"
+focus_mode = 0
+theme_type_variation = &"LockIconButton"
+icon = ExtResource("6_1mpno")

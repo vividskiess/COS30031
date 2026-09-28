@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://qyt5ctwjqe6u" path="res://Script/Window.gd" id="2_vosj3"]
 [ext_resource type="PackedScene" uid="uid://42lqgwhgm883" path="res://Objects/Desktop_Icon.tscn" id="3_ds4ad"]
 [ext_resource type="PackedScene" uid="uid://b6a2wm3d51h2f" path="res://Objects/Folder_content.tscn" id="4_ukg44"]
-[ext_resource type="Texture2D" uid="uid://d2itjyya3bvco" path="res://UI/Assets/Icons/start.svg" id="5_start"]
+[ext_resource type="Texture2D" uid="uid://d2itjyya3bvco" path="res://UI/Assets/Icons/FluentUI-system-icons/Grid/SVG/ic_fluent_grid_20_filled_white.svg" id="5_start"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
 
