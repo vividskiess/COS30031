@@ -7,7 +7,11 @@
 script = ExtResource("1_q4hct")
 display_name = "ReadMe"
 icon_texture = ExtResource("2_77swk")
-text_content = "Welcome to the BrokenOS, this operating system has been sneakily infected with some serious malware and all of the sensitive information on it risks being stolen. Use the tools at your disposal to navigate the file system, find every infected item and determine how to get rid of them using the malware stopping tools in your right click's context menu ASAP. Good Luck!
+text_content = "Welcome to the BrokenOS, this operating system has been sneakily infected 
+with some serious malware and all of the sensitive information on it risks being 
+stolen. Use the tools at your disposal to navigate the file system, find every infected
+ item and determine how to get rid of them using the malware stopping tools in your 
+right click's context menu ASAP. Good Luck!
 
 
 
