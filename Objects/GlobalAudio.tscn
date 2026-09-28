@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ydumlbiax163"]
 
+[ext_resource type="AudioStream" uid="uid://wa7sgloc5cgu" path="res://Asset/Sound/BackgroundMusic.mp3" id="2_y0a88"]
 [ext_resource type="AudioStream" uid="uid://w3t13gqhyg25" path="res://Asset/Sound/Click.mp3" id="2_yrj60"]
+[ext_resource type="AudioStream" uid="uid://cwr3rrhqu0gub" path="res://Asset/Sound/OfficeSounds.mp3" id="3_yrj60"]
 
 [sub_resource type="GDScript" id="GDScript_1qxhi"]
 script/source = "extends Node
@@ -36,3 +38,15 @@ script = SubResource("GDScript_1qxhi")
 
 [node name="ClickSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1830259639]
 stream = ExtResource("2_yrj60")
+
+[node name="BGMusicPlayer" type="AudioStreamPlayer" parent="." unique_id=768413833]
+stream = ExtResource("2_y0a88")
+volume_db = -26.49
+autoplay = true
+parameters/looping = true
+
+[node name="AmbientSoundsPlayer" type="AudioStreamPlayer" parent="." unique_id=684467730]
+stream = ExtResource("3_yrj60")
+volume_db = -18.245
+autoplay = true
+parameters/looping = false
