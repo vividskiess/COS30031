@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ydumlbiax163"]
+
+[ext_resource type="AudioStream" uid="uid://w3t13gqhyg25" path="res://Asset/Sound/Click.mp3" id="2_yrj60"]
+
+[sub_resource type="GDScript" id="GDScript_1qxhi"]
+script/source = "extends Node
+
+@onready var click_sound_player: AudioStreamPlayer = $ClickSoundPlayer
+
+# The maximum time (in seconds) to be considered a \"click\" vs a \"hold\"
+const CLICK_THRESHOLD = 0.2 
+
+var press_time: float = 0.0
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			# Record the exact time the mouse was pressed
+			press_time = Time.get_ticks_msec() / 1000.0
+		else:
+			# Mouse was released. Calculate how long it was held.
+			var release_time = Time.get_ticks_msec() / 1000.0
+			var duration = release_time - press_time
+			
+			# Only play sound if the release happened quickly
+			if duration < CLICK_THRESHOLD:
+				play_click_sound()
+
+func play_click_sound() -> void:
+	click_sound_player.pitch_scale = randf_range(0.98, 1.02)
+	click_sound_player.play()
+"
+
+[node name="GlobalAudio" type="Node2D" unique_id=429372432]
+script = SubResource("GDScript_1qxhi")
+
+[node name="ClickSoundPlayer" type="AudioStreamPlayer" parent="." unique_id=1830259639]
+stream = ExtResource("2_yrj60")
