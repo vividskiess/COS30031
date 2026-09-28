@@ -71,7 +71,7 @@ text = "Start"
 custom_minimum_size = Vector2(124, 64)
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(1620, 0)
+offset_transform_position = Vector2(1620, 10)
 
 [node name="Label" type="Label" parent="Taskbar/Panel/TaskbarGrid/Time" unique_id=1959877699]
 layout_mode = 0
@@ -79,7 +79,8 @@ offset_left = 38.0
 offset_top = 20.0
 offset_right = 80.0
 offset_bottom = 43.0
-text = "12:30"
+text = "
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 

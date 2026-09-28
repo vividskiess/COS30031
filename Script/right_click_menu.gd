@@ -2,6 +2,7 @@ extends PopupMenu
 
 signal request_refresh(modified_file: FileResource) #change to file creation
 signal request_rename
+signal request_virus_scan(target_folder: FileResource)
 
 var current_dir: FileResource
 var target_file:FileResource = null
@@ -11,6 +12,8 @@ var rect_size_y = 100
 
 var sub_menu: PopupMenu
 var is_cut_used = false
+
+
 
 enum PopupIds{
 	new,
@@ -62,9 +65,7 @@ func _on_item_pressed(id: int) -> void:
 	match id:
 		PopupIds.rename:
 			request_rename.emit()
-			
 		PopupIds.copy:
-			
 			if target_file != null:
 				print("Copy")
 				FileSys.copy_file(target_file)
@@ -72,7 +73,12 @@ func _on_item_pressed(id: int) -> void:
 		PopupIds.paste:
 			print("Paste")
 			FileSys.paste_file(current_dir)
-			request_refresh.emit(current_dir)
+			request_refresh.emit(current_dir)	
+		PopupIds.scanner:
+			if target_file != null and target_file.file_type == FileResource.FileType.FOLDER:
+				request_virus_scan.emit(target_file)
+			else:
+				request_virus_scan.emit(current_dir)
 
 func _on_new_sub_menu_pressed(id: int) -> void:
 	match id:

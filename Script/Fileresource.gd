@@ -5,10 +5,10 @@ extends Resource
 
 enum FileType {FOLDER, TEXT, IMAGE, EXECUTABLE, MALICOUS}
 
-
 @export var display_name: String = "New File"
 @export var icon_texture: Texture2D
 @export var file_type: FileType = FileType.TEXT
+@export var is_infected: bool = false
 
 
 @export_multiline var text_content: String = "" #Notepad

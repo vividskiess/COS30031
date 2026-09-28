@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://djvel2tbwfkh8"]
+
+[ext_resource type="Script" uid="uid://dvf1jxi8maagj" path="res://Script/Defender_tool.gd" id="1_xd7xj"]
+
+[node name="Scanner" type="Control" unique_id=2007559659]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_xd7xj")
+
+[node name="Label" type="Label" parent="." unique_id=498809098]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

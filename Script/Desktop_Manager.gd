@@ -4,6 +4,9 @@ extends Control
 @export var desktop_icon: PackedScene
 @export var folder_scence: PackedScene
 @export var text_scence: PackedScene
+@export var scanner_scence: PackedScene
+
+@export var remediate: PackedScene
 
 
 #export var application_scence: PackedScence?
@@ -11,8 +14,7 @@ extends Control
 @onready var desktop_files: Array[FileResource] = []
 @onready var icon_grid: GridContainer = $IconGrid
 @onready var taskbar_grid = $Taskbar/Panel/TaskbarGrid
-
-signal windows_content(window_node: Node)
+@onready var clock = $Taskbar/Panel/TaskbarGrid/Time/Label
 
 #Window node -> Button
 var minimize_icon_to_window: Dictionary = {}
@@ -26,6 +28,9 @@ var desktop_folder : FileResource
 var grid_column: int = 4
 var Taskbar_grid: int = 5
 
+func _testing_timer() -> void:
+	print("Test clock")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -37,8 +42,18 @@ func _ready() -> void:
 	
 	_refresh_grid()
 	
-	RightClickMenu.request_refresh.connect(_on_menu_refresh)
+	
+	RightClickMenu.request_refresh.connect(_on_menu_request)
 	RightClickMenu.request_rename.connect(_on_menu_rename_request)
+	RightClickMenu.request_virus_scan.connect(_on_virus_scan_request)
+	
+	Clock.time_passed.connect(_clock_update)
+	Clock.game_over_signal.connect(_handle_game_state)
+	#
+	InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
+	InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
+	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
+	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
 	
 		
 func _gui_input(event: InputEvent) -> void:
@@ -113,7 +128,6 @@ func _on_icon_open(data: FileResource) -> void:
 			new_window.embed_content(text_content)
 			text_content.setup(data)
 
-
 			
 		FileResource.FileType.FOLDER:
 			#Open folder Scence
@@ -160,16 +174,11 @@ func _refresh_grid() -> void:
 	for file_res in desktop_folder.contained_files:
 		create_desktop_icon(file_res, icon_grid)
 		
-func _on_menu_refresh(modified_folder: FileResource)->void:
+func _on_menu_request(modified_folder: FileResource)->void:
 	if modified_folder == desktop_folder:
 		_refresh_grid()
 		await get_tree().process_frame
-		var icons = icon_grid.get_children()
-		if icons.size() > 0:
-			var new_icon = icons[-1]
-			if new_icon.has_method("_start_renaming"):
-				new_icon._start_renaming()
-					
+
 func _on_menu_rename_request() -> void:
 	if is_selected != null:
 		
@@ -178,15 +187,33 @@ func _on_menu_rename_request() -> void:
 				if child.has_method("_start_renaming"):
 					child._start_renaming(	)
 					
-				
-
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
+	#if data != self:
 	return data is FileResource
+	#return false
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var old_folder = data.parent_path
 	var new_folder = desktop_folder
 	FileSys.move_file(data, old_folder, new_folder)
 	_refresh_grid()
-	get_tree().reload_current_scene()
+	RightClickMenu.request_refresh.emit(old_folder)
 	
+func _on_virus_scan_request(file: FileResource) -> void:
+	var Scanner = scanner_scence.instantiate()
+	add_child(Scanner)
+	
+	if Scanner.has_method("_Search_infected_files"):
+		Scanner._Search_infected_files(file)
+		
+	
+	pass
+	
+	
+func _clock_update(hours: int, minute:int) -> void:
+	var time_string = "%02d:%02d" % [hours, minute] 
+	clock.text = time_string
+	
+func _handle_game_state(game_state: bool) -> void:
+	#print("Game Over")
+	pass
