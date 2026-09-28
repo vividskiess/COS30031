@@ -166,6 +166,85 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfrm1"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.24705882, 0.24705882, 0.24705882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 24
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_capnm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_capfc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_caphv"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.06)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cappr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.04)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clshv"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.76862746, 0.16862746, 0.10980392, 1)
+corner_radius_top_right = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clspr"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.78431374, 0.2509804, 0.19215687, 1)
+corner_radius_top_right = 7
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbnrm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbfoc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbhov"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.06)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbprs"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.04)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="SystemFont" id="SystemFont_ixfno"]
 font_names = PackedStringArray("Segoe UI Variable Text", "Segoe UI")
 
@@ -183,6 +262,18 @@ Button/styles/hover = SubResource("StyleBoxFlat_vr70t")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_emg06")
 Button/styles/normal = SubResource("StyleBoxFlat_xs18g")
 Button/styles/pressed = SubResource("StyleBoxFlat_emg06")
+CaptionButton/base_type = &"Button"
+CaptionButton/styles/disabled = SubResource("StyleBoxEmpty_capnm")
+CaptionButton/styles/focus = SubResource("StyleBoxEmpty_capfc")
+CaptionButton/styles/hover = SubResource("StyleBoxFlat_caphv")
+CaptionButton/styles/hover_pressed = SubResource("StyleBoxFlat_cappr")
+CaptionButton/styles/normal = SubResource("StyleBoxEmpty_capnm")
+CaptionButton/styles/pressed = SubResource("StyleBoxFlat_cappr")
+CloseButton/base_type = &"CaptionButton"
+CloseButton/colors/icon_hover_color = Color(1, 1, 1, 1)
+CloseButton/styles/hover = SubResource("StyleBoxFlat_clshv")
+CloseButton/styles/hover_pressed = SubResource("StyleBoxFlat_clspr")
+CloseButton/styles/pressed = SubResource("StyleBoxFlat_clspr")
 HScrollBar/styles/grabber = SubResource("StyleBoxFlat_grbnm")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_grbhl")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_grbpr")
@@ -205,9 +296,22 @@ PopupMenu/constants/v_separation = 13
 PopupMenu/font_sizes/font_size = 14
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_pmhov")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_pmpnl")
+StartButton/base_type = &"TaskbarButton"
+StartButton/constants/icon_max_width = 24
+TaskbarButton/base_type = &"Button"
+TaskbarButton/styles/disabled = SubResource("StyleBoxEmpty_tbnrm")
+TaskbarButton/styles/focus = SubResource("StyleBoxEmpty_tbfoc")
+TaskbarButton/styles/hover = SubResource("StyleBoxFlat_tbhov")
+TaskbarButton/styles/hover_pressed = SubResource("StyleBoxFlat_tbprs")
+TaskbarButton/styles/normal = SubResource("StyleBoxEmpty_tbnrm")
+TaskbarButton/styles/pressed = SubResource("StyleBoxFlat_tbprs")
 TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_ttpnl")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_grbnm")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_grbhl")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_grbpr")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_vscrl")
+WindowFrame/base_type = &"PanelContainer"
+WindowFrame/styles/panel = SubResource("StyleBoxFlat_wfrm1")
+WindowTitleLabel/base_type = &"Label"
+WindowTitleLabel/font_sizes/font_size = 12
