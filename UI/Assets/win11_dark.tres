@@ -1,3 +1,79 @@
 [gd_resource type="Theme" format=3 uid="uid://t1qpjhw5w5hl"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs18g"]
+content_margin_left = 11.0
+content_margin_top = 5.0
+content_margin_right = 11.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22745098, 0.22745098, 0.22745098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eq4sw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vr70t"]
+content_margin_left = 11.0
+content_margin_top = 5.0
+content_margin_right = 11.0
+content_margin_bottom = 5.0
+bg_color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22745098, 0.22745098, 0.22745098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_emg06"]
+content_margin_left = 11.0
+content_margin_top = 5.0
+content_margin_right = 11.0
+content_margin_bottom = 5.0
+bg_color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22745098, 0.22745098, 0.22745098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnl01"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pnc02"]
+
+[sub_resource type="SystemFont" id="SystemFont_ixfno"]
+font_names = PackedStringArray("Segoe UI Variable Text", "Segoe UI")
+
 [resource]
+default_font = SubResource("SystemFont_ixfno")
+default_font_size = 14
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.44313726, 0.44313726, 0.44313726, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.8117647, 0.8117647, 0.8117647, 1)
+Button/constants/icon_max_width = 16
+Button/styles/disabled = SubResource("StyleBoxFlat_xs18g")
+Button/styles/focus = SubResource("StyleBoxEmpty_eq4sw")
+Button/styles/hover = SubResource("StyleBoxFlat_vr70t")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_emg06")
+Button/styles/normal = SubResource("StyleBoxFlat_xs18g")
+Button/styles/pressed = SubResource("StyleBoxFlat_emg06")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Panel/styles/panel = SubResource("StyleBoxEmpty_pnl01")
+PanelContainer/styles/panel = SubResource("StyleBoxEmpty_pnc02")
