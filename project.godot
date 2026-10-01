@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Assignment2 Git"
-run/main_scene="uid://d0pouifvwpkjo"
+run/main_scene="uid://w2ik18r45bxu"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://Asset/icon.svg"
 

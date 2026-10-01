@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://larih2olan7i"]
+
+[ext_resource type="Shader" uid="uid://dykeynfpvy6rs" path="res://UI/LockScreen/lock_wallpaper.gdshader" id="1_wall"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wall"]
+shader = ExtResource("1_wall")
+shader_parameter/base_color = Color(0.012, 0.027, 0.086, 1)
+shader_parameter/glow_color = Color(0.06, 0.3, 0.82, 1)
+shader_parameter/core_color = Color(0.45, 0.72, 1, 1)
+shader_parameter/center = Vector2(0.5, 0.6)
+shader_parameter/radius = 0.65
+
+[node name="Wallpaper" type="ColorRect"]
+layout_mode = 3
+material = SubResource("ShaderMaterial_wall")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.07, 0.18, 1)

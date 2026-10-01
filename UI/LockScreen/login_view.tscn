@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://j1u05qk4e7v2"]
 
 [ext_resource type="Texture2D" uid="uid://wv6lehbdodgp" path="res://UI/Assets/Icons/avatar.svg" id="1_l2g1e"]
-[ext_resource type="Texture2D" uid="uid://cf7wo2ccsrowq" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Right/SVG/ic_fluent_arrow_right_20_regular_white.svg" id="2_5gdh4"]
 [ext_resource type="Texture2D" uid="uid://dhnfdc1thtopn" path="res://UI/Assets/Icons/FluentUI-system-icons/Power/SVG/ic_fluent_power_20_regular_white.svg" id="4_34x7w"]
+[ext_resource type="Script" uid="uid://6l1jydu2a4q6" path="res://UI/LockScreen/login_view.gd" id="5_script"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_accept"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_accept"]
+events = [SubResource("InputEventAction_accept")]
 
 [node name="LoginView" type="Control" unique_id=26811691]
 layout_mode = 3
@@ -12,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("5_script")
 
 [node name="Card" type="VBoxContainer" parent="." unique_id=865586794]
 layout_mode = 1
@@ -67,34 +74,16 @@ custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="PinRow" type="HBoxContainer" parent="Card" unique_id=1436372016]
-custom_minimum_size = Vector2(296, 0)
+[node name="SignIn" type="Button" parent="Card" unique_id=1436372016]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 38)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 4
-
-[node name="Pin" type="LineEdit" parent="Card/PinRow" unique_id=1899753843]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 38)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_type_variation = &"PinBox"
-placeholder_text = "PIN"
-max_length = 32
-context_menu_enabled = false
-caret_blink = true
-secret = true
-
-[node name="Submit" type="Button" parent="Card/PinRow" unique_id=559174776]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(38, 38)
-layout_mode = 2
-tooltip_text = "Sign in"
 focus_mode = 0
 theme_type_variation = &"PinSubmitButton"
-icon = ExtResource("2_5gdh4")
-icon_alignment = 1
-expand_icon = true
+shortcut = SubResource("Shortcut_accept")
+shortcut_in_tooltip = false
+text = "Sign in"
 
 [node name="UserList" type="VBoxContainer" parent="." unique_id=700796314]
 unique_name_in_owner = true
@@ -135,3 +124,6 @@ tooltip_text = "Power"
 focus_mode = 0
 theme_type_variation = &"LockIconButton"
 icon = ExtResource("4_34x7w")
+
+[connection signal="pressed" from="Card/SignIn" to="." method="_on_sign_in_pressed"]
+[connection signal="pressed" from="Tray/Power" to="." method="_on_power_pressed"]
