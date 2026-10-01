@@ -21,9 +21,6 @@ func _ready() -> void:
 	change_file_name.text_submitted.connect(_on_rename_submit)
 	change_file_name.focus_exited.connect(func(): _on_rename_submit(change_file_name.text))
 	
-	
-	
-	
 #Changing the colour to signifty hovering over it
 func _on_mouse_entered() -> void: # need to add select and hovering animation soon
 	if not is_selected:
@@ -53,6 +50,7 @@ func _gui_input(event: InputEvent) -> void: #fix to double click
 				_select_icon()
 				print(file_data.display_name)
 				RightClickMenu._open_menu(file_data.parent_path, get_global_mouse_position(), file_data)
+				accept_event()
 
 #Icon Selection Will be used for checking if file selected is actually malicous
 func _select_icon() -> void:

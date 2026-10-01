@@ -1,37 +1,41 @@
 extends Control
-
+#Import all content Nodes for each section {Window, Content, Remediate system}
 @export var window_scene: PackedScene
 @export var desktop_icon: PackedScene
 @export var folder_scence: PackedScene
 @export var text_scence: PackedScene
 @export var scanner_scence: PackedScene
-
 @export var remediate: PackedScene
 
 
-#export var application_scence: PackedScence?
+@export var difficulty: int = 3
 
+#singleton Scanner
+@onready var active_scanner_window: Node = null
+@onready var active_scanner_content: Node = null
+
+
+#Handles Desktop Load, Icon_grid, Taskbar, computer clock
 @onready var desktop_files: Array[FileResource] = []
 @onready var icon_grid: GridContainer = $IconGrid
 @onready var taskbar_grid = $Taskbar/Panel/TaskbarGrid
 @onready var clock = $Taskbar/Panel/TaskbarGrid/Time/Label
 
-#Window node -> Button
+#Window node mapped to button to be open later
 var minimize_icon_to_window: Dictionary = {}
 
-#to be changed to array to be used as multiple select
+#to be changed to array to be used as multiple select but to check which file is looked at
 var is_selected: FileResource = null
 
+#Main Desktop
 var desktop_folder : FileResource
 
-#testing grid
+
+#testing grid needs to be adjustable later on
 var grid_column: int = 4
 var Taskbar_grid: int = 5
 
-func _testing_timer() -> void:
-	print("Test clock")
-
-# Called when the node enters the scene tree for the first time.
+#Calling all setup to get Game ready.
 func _ready() -> void:
 	
 	_icon_grid_setup()
@@ -42,20 +46,31 @@ func _ready() -> void:
 	
 	_refresh_grid()
 	
-	
+	#Control for right click signal
 	RightClickMenu.request_refresh.connect(_on_menu_request)
 	RightClickMenu.request_rename.connect(_on_menu_rename_request)
 	RightClickMenu.request_virus_scan.connect(_on_virus_scan_request)
+	RightClickMenu.request_contain.connect(_contian_virus)
+	RightClickMenu.reverse_engineer.connect(_reverse_engineer_call)
 	
+	
+	#Clock signal
 	Clock.time_passed.connect(_clock_update)
 	Clock.game_over_signal.connect(_handle_game_state)
-	#
-	InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
-	InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
+	
+	# to be added Automatic random malware selection and injection (#work in progress)
+	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)	
+	#InfectionManager._inject_malware(destruction, "Destroy", 10)
+	#InfectionManager._inject_malware(Adware, "FreeRobux", 3)
+	
 	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
 	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
 	
-		
+	InfectionManager.trigger_popup.connect(_on_icon_open)
+	
+	_spawn_random_virus()
+	
+#handles all user input
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -67,13 +82,14 @@ func _gui_input(event: InputEvent) -> void:
 			RightClickMenu._open_menu(desktop_folder, get_global_mouse_position(), null)
 			
 
+#stop selection UI
 func _deselect_all_icon() -> void:
 	for child in icon_grid.get_children():
 		if child.has_method("deselect"):
 			child.deselect()
 
 
-#Changing grid main window
+#Changing grid seperation can be modified to adjustr automatically will be worked on later
 func _icon_grid_setup() -> void:
 	#Desktop_grid sepeartion
 	
@@ -85,7 +101,7 @@ func _icon_grid_setup() -> void:
 	taskbar_grid.add_theme_constant_override("h_separation", 50)
 
 
-#linking every folder
+#linking every folder to thier parent as a linked list
 func link_to_parent(parent: FileResource):
 	for child in parent.contained_files:
 		child.parent_path = parent
@@ -101,26 +117,32 @@ func create_desktop_icon(data: FileResource, parent_grid: GridContainer) -> void
 	icon_instance.icon_double_clicked.connect(_on_icon_open)
 	icon_instance.icon_selected.connect(_on_icon_selected)
 	
-	
-#Opening Window Scence
-func _on_icon_open(data: FileResource) -> void:
+func create_base_window(title: String, icon_text: Texture2D) -> Node:
 	var new_window = window_scene.instantiate()
 	add_child(new_window)
-	new_window.set_title(data.display_name)
+	new_window.set_title(title)
 	new_window.state.connect(_control_window_state) #connects with window to change open, close. minimize
-
-	#creating mini button in taskbar
+	
 	var taskbar_button = Button.new()
-	taskbar_button.icon = data.icon_texture
+	if icon_text != null:
+		taskbar_button.icon = icon_text
+	else:
+		taskbar_button.text = "Sys"
 	taskbar_button.custom_minimum_size = Vector2(64,64) #size of icon in minimize mode
 	taskbar_grid.add_child(taskbar_button)
 	
-	#dictionary of button icon
 	minimize_icon_to_window[new_window] = taskbar_button
-	taskbar_button.pressed.connect(func(): _control_window_state(new_window, "opened")) #calling to open back up
+	taskbar_button.pressed.connect(func(): _control_window_state(new_window, "opened"))
+	
+	return new_window
 	
 	
-	#to be moved to Each of thier own
+#Opening Window which later holds its contnet
+func _on_icon_open(data: FileResource) -> void:
+	
+	var new_window = create_base_window(data.display_name, data.icon_texture)
+	
+	#calls another node for content gen
 	match data.file_type:
 		FileResource.FileType.TEXT:
 			#open Text Scence
@@ -136,8 +158,8 @@ func _on_icon_open(data: FileResource) -> void:
 			#changing folder name without creating new scnce
 			folder_content.change_window_name.connect(func(file_data): new_window.set_title(file_data.display_name))
 			folder_content.open_new_window.connect(_on_icon_open)
-			
 			folder_content.setup(data, "C:/Desktop/")
+
 				
 #Control if window is changign size close or minimize
 func _control_window_state(window_node:Node, new_state:String) -> void:
@@ -160,6 +182,7 @@ func _control_window_state(window_node:Node, new_state:String) -> void:
 				window_node.move_to_front()
 				
 				
+#UI
 func _on_icon_selected(selectedData: FileResource) -> void:
 	is_selected = selectedData
 	
@@ -187,6 +210,8 @@ func _on_menu_rename_request() -> void:
 				if child.has_method("_start_renaming"):
 					child._start_renaming(	)
 					
+					
+#file movement
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	#if data != self:
 	return data is FileResource
@@ -199,21 +224,65 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	_refresh_grid()
 	RightClickMenu.request_refresh.emit(old_folder)
 	
-func _on_virus_scan_request(file: FileResource) -> void:
-	var Scanner = scanner_scence.instantiate()
-	add_child(Scanner)
+func _spawn_random_virus() -> void:
+	var virus_pool = [Rename_Virus, AdwareVirus, file_eater, destruction]
 	
-	if Scanner.has_method("_Search_infected_files"):
-		Scanner._Search_infected_files(file)
+	var fake_names = ["1.exe", "2.exe", "3.exe", "4.exe"]
+	var all_item = FileSys._get_all_files(FileSys.desktop_folder)
+	
+	var all_folders: Array[FileResource] = [FileSys.desktop_folder]
+	
+	for item in all_item:
+		if item.file_type == FileResource.FileType.FOLDER:
+			all_folders.append(item)
+	
+	for i in range(difficulty):
+		var chosen_virus = virus_pool.pick_random()
+		var chosen_name = fake_names.pick_random()
+		var tick_rate = randf_range(4.0, 12.0)
+		var chosen_folder = all_folders.pick_random()
 		
+		fake_names.erase(chosen_name)
+		InfectionManager._inject_malware(chosen_virus, chosen_name, tick_rate, chosen_folder)
+		
+#Defender Tool
+func _on_virus_scan_request(file: FileResource) -> void:	
+	if is_instance_valid(active_scanner_window):
+		_control_window_state(active_scanner_window, "opened")
+		
+	if is_instance_valid(active_scanner_content) and active_scanner_content.has_method("start_scan"):
+		active_scanner_content.start_scan(file)
+		
+	else:
+		active_scanner_window = create_base_window("Scanner", null)
+		active_scanner_content = scanner_scence.instantiate()
+		active_scanner_window.embed_content(active_scanner_content)
+		if active_scanner_content.has_method("start_scan"):
+			active_scanner_content.start_scan(file)
+
+func _contian_virus(file: FileResource) -> void:
+	var success = InfectionManager.attempt_containment(file, 5.0)
+	if success:
+		print("print sucessfully contain for 30 seconds")
+	else:
+		print("Failed")
 	
-	pass
+	
+func _reverse_engineer_call(file: FileResource) -> void:
+	_on_icon_open(file)
+	
+#func Containement(file:FileResource) -> void:
 	
 	
+#changing clock 
 func _clock_update(hours: int, minute:int) -> void:
 	var time_string = "%02d:%02d" % [hours, minute] 
 	clock.text = time_string
-	
+
+#may be moved
 func _handle_game_state(game_state: bool) -> void:
-	#print("Game Over")
+	if game_state:
+		print("Winner")
+	else:
+		print("Lost")
 	pass
