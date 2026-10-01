@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://f6aowyrr2nig"]
+
+[ext_resource type="Script" uid="uid://nardp1r8b3s2" path="res://UI/LockScreen/level_select_view.gd" id="1_view"]
+[ext_resource type="Texture2D" uid="uid://7m881xdjgx2s" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Left/SVG/ic_fluent_arrow_left_20_regular_white.svg" id="2_back"]
+[ext_resource type="PackedScene" uid="uid://bayfcyk21jxgx" path="res://UI/LockScreen/account_card.tscn" id="3_card"]
+[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/Levels/level_data.gd" id="4_data"]
+[ext_resource type="Resource" uid="uid://0qgabypy4bpf" path="res://UI/Levels/level_1.tres" id="5_level1"]
+[ext_resource type="Resource" uid="uid://walm18y2dy5t" path="res://UI/Levels/level_2.tres" id="6_level2"]
+[ext_resource type="Resource" uid="uid://xxb8jqaywl6e" path="res://UI/Levels/level_3.tres" id="7_level3"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_cancel"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_cancel"]
+events = [SubResource("InputEventAction_cancel")]
+
+[node name="LevelSelectView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_view")
+account_card = ExtResource("3_card")
+levels = Array[ExtResource("4_data")]([ExtResource("5_level1"), ExtResource("6_level2"), ExtResource("7_level3")])
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -220.0
+offset_right = 480.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme_type_variation = &"LockUserLabel"
+text = "Choose an account"
+horizontal_alignment = 1
+
+[node name="Accounts" type="HBoxContainer" parent="Content"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Back" type="Button" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_type_variation = &"LockIconButton"
+shortcut = SubResource("Shortcut_cancel")
+shortcut_in_tooltip = false
+text = "Back"
+icon = ExtResource("2_back")
+
+[connection signal="pressed" from="Content/Back" to="." method="_on_back_pressed"]

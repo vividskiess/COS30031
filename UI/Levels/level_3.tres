@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://xxb8jqaywl6e"]
+
+[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/Levels/level_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+account_name = "SysAdmin"
+role = "Level 3"
+avatar_tint = Color(0.42, 0.3, 0.66, 1)
