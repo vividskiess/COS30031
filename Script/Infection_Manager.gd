@@ -26,7 +26,6 @@ func _inject_malware(Virus_class: Script, hidden_name: String, tick_rate: float,
 	active_virus[malicious_file] = virus_node
 	
 func attempt_containment(target_file: FileResource, duration: float) -> bool:
-	
 	if active_virus.has(target_file):
 		print("test")
 		var virus_script = active_virus[target_file]

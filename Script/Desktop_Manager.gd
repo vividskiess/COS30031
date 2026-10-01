@@ -261,7 +261,7 @@ func _on_virus_scan_request(file: FileResource) -> void:
 			active_scanner_content.start_scan(file)
 
 func _contian_virus(file: FileResource) -> void:
-	var success = InfectionManager.attempt_containment(file, 5.0)
+	var success = InfectionManager.attempt_containment(file, 20.0)
 	if success:
 		print("print sucessfully contain for 30 seconds")
 	else:
