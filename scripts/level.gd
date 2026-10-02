@@ -1,5 +1,8 @@
 extends Node2D
 
+var key_node = preload("res://scenes/key.tscn")
+var exit_node = preload("res://scenes/exit.tscn")
+
 # The level script will procedurally generate a maze for the level scene each time it is called.
 # The maze is generated through the Recursive Backtrack algorithm.
 
@@ -31,7 +34,7 @@ var maze_seed = 0 # Seed value for map.
 
 var counter = 0
 var key_spawn = (width * height)/2 - 1
-var exit_spawn = (width * height) - 1 
+var exit_spawn = (width * height) - 1
 
 @onready var Map = $TileMapLayer # Reference to the tile map for convenience.
 
@@ -41,7 +44,8 @@ func _ready():
 		maze_seed = randi()
 	seed(maze_seed)
 	print("Seed: ", maze_seed)
-	tile_size = Map.tile_set.tile_size
+	# tile_size = Map.tile_set.tile_size
+	
 	make_maze()
 
 func check_neighbours(cell, unvisited):
@@ -78,8 +82,14 @@ func make_maze():
 			current = next # Next tile is now the current tile.
 			unvisited.erase(current) # Erases the current tile from unvisited, as it will now be visited through a new iteration of this while loop.
 			counter += 1
-			if (counter == key_spawn or counter == exit_spawn):
-				pass
+			if (counter == key_spawn):
+				var key = key_node.instantiate()
+				key.position = current * tile_size
+				add_child(key)
+			if (counter == exit_spawn):
+				var exit = exit_node.instantiate()
+				exit.position = current * tile_size
+				add_child(exit)
 		elif stack: # Checks if stack is currently not empty - this is only if there are no neighbours to be scanned - this is where we backtrack recursively.
 			current = stack.pop_back()
-		# await get_tree().create_timer(0.005).timeout # Shows maze creation in real time.
+		await get_tree().create_timer(0.005).timeout # Shows maze creation in real time.

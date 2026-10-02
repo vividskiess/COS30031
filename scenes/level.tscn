@@ -19,8 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://puef7bp6rr4y" path="res://assets/minigame/maze_08.png" id="17_gur6y"]
 [ext_resource type="PackedScene" uid="uid://dixuoy8uubxwi" path="res://scenes/player.tscn" id="18_82cfe"]
 [ext_resource type="Texture2D" uid="uid://c64if1kbdqm16" path="res://assets/minigame/maze_09.png" id="18_v3why"]
-[ext_resource type="PackedScene" uid="uid://dieo08muy21hl" path="res://scenes/key.tscn" id="20_h6wmr"]
-[ext_resource type="PackedScene" uid="uid://ch7pkrix0chsq" path="res://scenes/exit.tscn" id="21_pqd0y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gunhw"]
 texture = ExtResource("2_gunhw")
@@ -154,7 +152,3 @@ tile_set = SubResource("TileSet_bntgb")
 
 [node name="Player" parent="." unique_id=206688917 instance=ExtResource("18_82cfe")]
 position = Vector2(8, 8)
-
-[node name="Key" parent="." unique_id=203972376 instance=ExtResource("20_h6wmr")]
-
-[node name="Exit" parent="." unique_id=1968971953 instance=ExtResource("21_pqd0y")]
