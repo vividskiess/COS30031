@@ -1,17 +1,14 @@
 extends CharacterBody2D
 
 # Variables set when scene is ready.
-@onready var screen_size = get_viewport_rect().size # Get screen size (480x270, 960x540) values.
+@onready var screen_size = get_viewport_rect().size # Get screen size (960x540) values.
 
 # Adjustable variables in inspector w/ default values.
-@export var move_speed: float = 200.0 # Movement speed.
+@export var move_speed: float = 400.0 # Movement speed.
 
 # All other variables.
 var has_key = false # Flag for level key.
 
-# Function for initialising.
-func _ready() -> void:
-	position = Vector2(screen_size.x/2, screen_size.y) # Set starting position - might change per level.
 
 # Function for movement.
 func _physics_process(_delta: float) -> void:
