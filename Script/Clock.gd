@@ -1,6 +1,6 @@
 extends Node
 
-var clock_tick_rate: float = 6000.0 #speed up or slow down (60 is to say 1s real time turn to 1 min in game)
+var clock_tick_rate: float = 60.0 #speed up or slow down (60 is to say 1s real time turn to 1 min in game)
 var elapsed_time: float = 0.0
 
 var current_min: float = 0.0

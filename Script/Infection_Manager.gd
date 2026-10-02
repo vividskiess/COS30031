@@ -1,6 +1,8 @@
 extends Node
 
 signal trigger_popup(file_data: FileResource)
+signal trigger_notification(file_data: FileResource)
+signal containment_breached(file_data: FileResource)
 
 
 #handles Virus injection
@@ -21,13 +23,13 @@ func _inject_malware(Virus_class: Script, hidden_name: String, tick_rate: float,
 	add_child(virus_node)
 	
 	virus_node.setup(malicious_file, target_folder, tick_rate)
+	virus_node.containment_breach.connect(func(f): containment_breached.emit(f))
 	
 	RightClickMenu.request_refresh.emit(target_folder)
 	active_virus[malicious_file] = virus_node
 	
 func attempt_containment(target_file: FileResource, duration: float) -> bool:
 	if active_virus.has(target_file):
-		print("test")
 		var virus_script = active_virus[target_file]
 		virus_script.contained(duration)
 		return true

@@ -4,8 +4,9 @@ extends Control
 @export var desktop_icon: PackedScene
 @export var folder_scence: PackedScene
 @export var text_scence: PackedScene
-@export var scanner_scence: PackedScene
-@export var remediate: PackedScene
+@export var notification_scence: PackedScene
+@export var Scanner_scence: PackedScene
+@export var remediate_scence: PackedScene
 
 
 @export var difficulty: int = 3
@@ -20,6 +21,7 @@ extends Control
 @onready var icon_grid: GridContainer = $IconGrid
 @onready var taskbar_grid = $Taskbar/Panel/TaskbarGrid
 @onready var clock = $Taskbar/Panel/TaskbarGrid/Time/Label
+@onready var notification_area = $Notifcation_spot
 
 #Window node mapped to button to be open later
 var minimize_icon_to_window: Dictionary = {}
@@ -58,15 +60,12 @@ func _ready() -> void:
 	Clock.time_passed.connect(_clock_update)
 	Clock.game_over_signal.connect(_handle_game_state)
 	
-	# to be added Automatic random malware selection and injection (#work in progress)
-	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)	
-	#InfectionManager._inject_malware(destruction, "Destroy", 10)
-	#InfectionManager._inject_malware(Adware, "FreeRobux", 3)
-	
-	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
-	#InfectionManager._inject_malware(Rename_Virus, "NotSus", 2)
-	
 	InfectionManager.trigger_popup.connect(_on_icon_open)
+	InfectionManager.trigger_notification.connect(_spawn_notification)
+	InfectionManager.containment_breached.connect(_on_containment_breach)
+	
+	
+	#InfectionManager._inject_malware(AdwareVirus, "Adware", 1)
 	
 	_spawn_random_virus()
 	
@@ -247,25 +246,35 @@ func _spawn_random_virus() -> void:
 		
 #Defender Tool
 func _on_virus_scan_request(file: FileResource) -> void:	
-	if is_instance_valid(active_scanner_window):
-		_control_window_state(active_scanner_window, "opened")
+	var scanner = Scanner_scence.instantiate()
+	add_child(scanner)
+	scanner.hide()
+	scanner.finsih_scan.connect(_on_scan_finish)
+	scanner.start_scan(file)
+	
+func _on_scan_finish(threats: Array[FileResource]) -> void:
+	if threats.is_empty():
+		_show_notification("Safe", "No threat Found")
+		return
+	var  names: PackedStringArray = []
+	for t in threats:
+		names.append(t.display_name)
 		
-	if is_instance_valid(active_scanner_content) and active_scanner_content.has_method("start_scan"):
-		active_scanner_content.start_scan(file)
-		
-	else:
-		active_scanner_window = create_base_window("Scanner", null)
-		active_scanner_content = scanner_scence.instantiate()
-		active_scanner_window.embed_content(active_scanner_content)
-		if active_scanner_content.has_method("start_scan"):
-			active_scanner_content.start_scan(file)
-
+	var title = "%d threat%s Detected" % [threats.size(), "" if threats.size() ==  1 else "s"]
+	_show_notification(title, "Found: " + " ".join(names))
+	
+	
+	
 func _contian_virus(file: FileResource) -> void:
-	var success = InfectionManager.attempt_containment(file, 20.0)
+	var success = InfectionManager.attempt_containment(file, 2.0)
 	if success:
-		print("print sucessfully contain for 30 seconds")
+		_show_notification("Threat Contianed", "%sContained for%d" % [file.display_name, int(2)])
 	else:
-		print("Failed")
+		_show_notification("Containment Failed", "%s is not an acive threat" % file.display_name)
+		
+func _on_containment_breach(file:FileResource) -> void:
+	print("containment breach")
+	_show_notification("Containment_breach!", "%s is active again" % file.display_name)
 	
 	
 func _reverse_engineer_call(file: FileResource) -> void:
@@ -278,6 +287,16 @@ func _reverse_engineer_call(file: FileResource) -> void:
 func _clock_update(hours: int, minute:int) -> void:
 	var time_string = "%02d:%02d" % [hours, minute] 
 	clock.text = time_string
+	
+func _spawn_notification(data: FileResource) -> void:
+	_show_notification(data.display_name, data.text_content)
+
+
+func _show_notification(title: String, body: String) -> void:
+	var pop = notification_scence.instantiate()
+	notification_area.add_child(pop)
+	pop.setup(title, body, 8.0)
+
 
 #may be moved
 func _handle_game_state(game_state: bool) -> void:
