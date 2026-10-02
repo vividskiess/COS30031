@@ -18,7 +18,7 @@ const S = 4
 const W = 8
 
 var cell_walls = {
-	Vector2(0, -1): N, 
+	Vector2(0, -1): N,
 	Vector2(1, 0): E,
 	Vector2(0, 1): S,
 	Vector2(-1, 0): W}
@@ -43,8 +43,8 @@ func _ready():
 func check_neighbours(cell, unvisited):
 	# Returns array of the cell's unvisited neighbours.
 	var list = []
-	for n in cell_walls.keys():
-		if cell + n in unvisited:
+	for n in cell_walls.keys(): # Goes through each of the cell walls.
+		if cell + n in unvisited: # If the resulting addition of the current cell coordinates and the cell wall is an unvisited one, add it to the new list.
 			list.append(cell + n)
 	return list
 
@@ -54,24 +54,25 @@ func make_maze():
 	Map.clear()
 	for x in range (width):
 		for y in range (height):
-			unvisited.append(Vector2(x, y))
-			Map.set_cell(Vector2(x, y), N|E|S|W, Vector2i(0, 0), 0)
-	var current = Vector2(0, 0)
-	unvisited.erase(current)
+			unvisited.append(Vector2(x, y)) # Fills unvisited with tile.
+			Map.set_cell(Vector2(x, y), N|E|S|W, Vector2i(0, 0), 0) # Sets tile on tilemap as solid, where source id = 15, which is the value obtained from using OR on all 4 constants.
+	var current = Vector2(0, 0) # Where we actually start filling in the maze.
+	unvisited.erase(current) # Erases the current tile from unvisited, as it will now be visited in the code below.
 	
 	# Recursive backtrack algorithm.
 	while unvisited:
-		var neighbours = check_neighbours(current, unvisited)
-		if neighbours.size() > 0:
-			var next = neighbours[randi() % neighbours.size()]
-			stack.append(current)
+		var neighbours = check_neighbours(current, unvisited) # Retrives an array of the current cell's unvisited neighbours.
+		if neighbours.size() > 0: # If the returned neighbour list size is greater than 4 - otherwise skip.
+			var next = neighbours[randi() % neighbours.size()] # Provides random entry in neighbour that will be the new path walked.
+			stack.append(current) # Puts current cell in stack.
 			# Remove walls from both cells.
-			var dir = next - current
-			var current_walls = Map.get_cell_source_id(current) - cell_walls[dir]
-			var next_walls = Map.get_cell_source_id(next) - cell_walls[-dir]
-			Map.set_cell(current, current_walls, Vector2i(0, 0), 0)
-			Map.set_cell(next, next_walls, Vector2i(0, 0), 0)
-			current = next
-			unvisited.erase(current)
-		elif stack:
+			var dir = next - current # Figure out actual next cell to enter.
+			var current_walls = Map.get_cell_source_id(current) - cell_walls[dir] # Get tile that represents the new no. of walls (1-4) for current tile.
+			var next_walls = Map.get_cell_source_id(next) - cell_walls[-dir] # Get tile that will represent the new no. of walls (1-4) for the next tile.
+			Map.set_cell(current, current_walls, Vector2i(0, 0), 0) # Actually replaces tile.
+			Map.set_cell(next, next_walls, Vector2i(0, 0), 0) # Actually replaces tile.
+			current = next # Next tile is now the current tile.
+			unvisited.erase(current) # Erases the current tile from unvisited, as it will now be visited through a new iteration of this while loop.
+		elif stack: # Checks if stack is currently not empty - this is only if there are no neighbours to be scanned - this is where we backtrack recursively.
 			current = stack.pop_back()
+		await get_tree().create_timer(1).timeout # Shows maze creation in real time.
