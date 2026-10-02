@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ch7pkrix0chsq"]
+
+[ext_resource type="Texture2D" uid="uid://dfrhtq7mk6bf1" path="res://assets/minigame/exit.png" id="1_l0aq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjin0"]
+size = Vector2(16, 16)
+
+[node name="Exit" type="Area2D" unique_id=1968971953]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=520393204]
+texture = ExtResource("1_l0aq0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1736996557]
+shape = SubResource("RectangleShape2D_gjin0")
