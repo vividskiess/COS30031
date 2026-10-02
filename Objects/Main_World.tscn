@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://doh3itm6jhli" path="res://Objects/Mouse.tscn" id="2_ldsjx"]
 [ext_resource type="PackedScene" uid="uid://dxf7ph5nbl2i4" path="res://Objects/Text_content.tscn" id="3_ags0o"]
 [ext_resource type="PackedScene" uid="uid://djvel2tbwfkh8" path="res://Objects/Scanner.tscn" id="4_1xq3s"]
+[ext_resource type="PackedScene" uid="uid://k6oxae3h86nt" path="res://UI/PauseMenu/pause_menu.tscn" id="5_pause"]
 
 [node name="Main" type="Control" unique_id=2124420353]
 layout_mode = 3
@@ -30,3 +31,5 @@ layout_mode = 0
 offset_left = 0.0
 offset_right = 512.0
 mouse_filter = 2
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_pause")]
