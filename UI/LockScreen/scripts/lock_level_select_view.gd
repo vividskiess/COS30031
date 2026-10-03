@@ -16,6 +16,7 @@ func _ready() -> void:
 
 
 func _on_account_pressed() -> void:
+	# NOTE CHANGE WHEN PROPER SCENE MANAGEMENT IS IN
 	get_tree().change_scene_to_file(game_scene)
 
 
