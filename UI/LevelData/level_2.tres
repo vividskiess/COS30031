@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://walm18y2dy5t"]
 
-[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/Levels/Scripts/level_data.gd" id="1_data"]
+[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/LevelData/Scripts/level_data.gd" id="1_data"]
 
 
 [resource]

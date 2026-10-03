@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://nardp1r8b3s2" path="res://UI/LockScreen/Scripts/lock_level_select_view.gd" id="1_view"]
 [ext_resource type="Texture2D" uid="uid://7m881xdjgx2s" path="res://UI/Assets/Icons/FluentUI-system-icons/Arrow Left/SVG/ic_fluent_arrow_left_20_regular_white.svg" id="2_back"]
 [ext_resource type="PackedScene" uid="uid://bayfcyk21jxgx" path="res://UI/LockScreen/lock_account_card.tscn" id="3_card"]
-[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/Levels/Scripts/level_data.gd" id="4_data"]
-[ext_resource type="Resource" uid="uid://0qgabypy4bpf" path="res://UI/Levels/level_1.tres" id="5_level1"]
-[ext_resource type="Resource" uid="uid://walm18y2dy5t" path="res://UI/Levels/level_2.tres" id="6_level2"]
-[ext_resource type="Resource" uid="uid://xxb8jqaywl6e" path="res://UI/Levels/level_3.tres" id="7_level3"]
+[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/LevelData/Scripts/level_data.gd" id="4_data"]
+[ext_resource type="Resource" uid="uid://0qgabypy4bpf" path="res://UI/LevelData/level_1.tres" id="5_level1"]
+[ext_resource type="Resource" uid="uid://walm18y2dy5t" path="res://UI/LevelData/level_2.tres" id="6_level2"]
+[ext_resource type="Resource" uid="uid://xxb8jqaywl6e" path="res://UI/LevelData/level_3.tres" id="7_level3"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_cancel"]
 action = &"ui_cancel"
