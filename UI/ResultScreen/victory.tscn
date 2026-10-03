@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjjrhdwngdqdm"]
+
+[ext_resource type="PackedScene" uid="uid://bbw0lekqf28x3" path="res://UI/ResultScreen/result_screen.tscn" id="1_base"]
+
+[node name="Victory" instance=ExtResource("1_base")]
+
+[node name="Title" parent="Card" index="0"]
+theme_override_colors/font_color = Color(0.42, 0.8, 0.45, 1)
+text = "Threats remediated"
+
+[node name="Primary" parent="Card" index="5"]
+text = "Play again"
