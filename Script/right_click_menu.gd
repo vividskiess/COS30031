@@ -3,6 +3,8 @@ extends PopupMenu
 signal request_refresh(modified_file: FileResource) #change to file creation
 signal request_rename
 signal request_virus_scan(target_folder: FileResource)
+signal request_contain(target_file: FileResource)
+signal reverse_engineer(target_file: FileResource)
 
 var current_dir: FileResource
 var target_file:FileResource = null
@@ -23,7 +25,7 @@ enum PopupIds{
 	paste,
 	scanner, 
 	container,
-	
+	Reverse_Engineer,
 }
 
 enum CreateMenu{
@@ -38,13 +40,14 @@ func _ready():
 	add_child(sub_menu)
 	
 	#Main Right Click menu adding option
-	add_submenu_node_item("New", sub_menu)
-	add_item("Rename", PopupIds.rename)
-	add_item("Copy", PopupIds.copy)
-	add_item("Cut", PopupIds.cut)
-	add_item("Paste", PopupIds.paste)
-	add_item("Scanner", PopupIds.scanner)
-	add_item("Container", PopupIds.container)
+	add_submenu_node_item("New", sub_menu) #Done
+	add_item("Rename", PopupIds.rename) #Done
+	add_item("Copy", PopupIds.copy) #Done
+	add_item("Cut", PopupIds.cut) #Work in progress
+	add_item("Paste", PopupIds.paste) #Done
+	add_item("Scanner", PopupIds.scanner) #Done
+	add_item("Contain", PopupIds.container) #Work in progress
+	add_item("Reverse Engineer", PopupIds.Reverse_Engineer ) #Andrew
 
 	#sub menu adding 
 	sub_menu.add_item("Folder", CreateMenu.folder)
@@ -79,6 +82,14 @@ func _on_item_pressed(id: int) -> void:
 				request_virus_scan.emit(target_file)
 			else:
 				request_virus_scan.emit(current_dir)
+				
+		PopupIds.container:
+				request_contain.emit(target_file)	
+				
+		PopupIds.Reverse_Engineer:
+			if target_file.is_infected == true:
+				reverse_engineer.emit(target_file)
+			
 
 func _on_new_sub_menu_pressed(id: int) -> void:
 	match id:

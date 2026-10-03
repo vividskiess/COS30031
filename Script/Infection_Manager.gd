@@ -1,13 +1,21 @@
 extends Node
 
-#handles Virus injection
+signal trigger_popup(file_data: FileResource)
+signal trigger_notification(file_data: FileResource)
+signal containment_breached(file_data: FileResource)
 
-func _inject_malware(Virus_class: Script, hidden_name: String, tick_rate: float) -> void:
+
+#handles Virus injection
+var active_virus: Dictionary = {}
+
+func _inject_malware(Virus_class: Script, hidden_name: String, tick_rate: float, target_folder:FileResource = null) -> void:
 	var malicious_file = FileResource.new()
 	malicious_file.display_name = hidden_name
-	malicious_file.file_type = FileResource.FileType.TEXT
+	malicious_file.file_type = FileResource.FileType.MALICOUS #change to malware type
 	
-	var target_folder = FileSys.desktop_folder
+	if target_folder == null:
+		target_folder = FileSys.desktop_folder
+	
 	target_folder.contained_files.append(malicious_file)
 	malicious_file.parent_path = target_folder
 	
@@ -15,5 +23,16 @@ func _inject_malware(Virus_class: Script, hidden_name: String, tick_rate: float)
 	add_child(virus_node)
 	
 	virus_node.setup(malicious_file, target_folder, tick_rate)
+	virus_node.containment_breach.connect(func(f): containment_breached.emit(f))
 	
 	RightClickMenu.request_refresh.emit(target_folder)
+	active_virus[malicious_file] = virus_node
+	
+func attempt_containment(target_file: FileResource, duration: float) -> bool:
+	if active_virus.has(target_file):
+		var virus_script = active_virus[target_file]
+		virus_script.contained(duration)
+		return true
+	else:
+		return false
+		

@@ -15,22 +15,6 @@ func _ready() -> void:
 func _intialize_system() -> void:
 	desktop_folder = load("res://Asset/Computer_Architecture/Desktop.tres")
 	
-	#old desktop load sys
-	#desktop_folder = FileResource.new()
-	#desktop_folder.display_name = "Desktop"
-	#desktop_folder.file_type = FileResource.FileType.FOLDER
-	#
-	#var path = "res://Asset/Computer_Architecture/Desktop/"
-	#var file_names = ResourceLoader.list_directory(path)
-	#
-	#for file_name in file_names:
-		#var full_path = path.path_join(file_name)
-		#var load_res = load(full_path)
-	#
-		#if load_res is FileResource:
-			#load_res.parent_path = desktop_folder
-			#desktop_folder.contained_files.append(load_res)
-	
 func add_path(path:String, new_file:FileResource) -> void:
 	if not dictionary.has(path):
 		dictionary[path] = []
@@ -74,13 +58,40 @@ func paste_file(target_folder: FileResource)->void:
 	for file in clipboard:
 		var new_file = file.duplicate()
 		new_file.parent_path = target_folder
-		
 		target_folder.contained_files.append(new_file)
 		
+#get file in folder
 func get_all_file_in_folder_for_scan(current_folder: FileResource) -> Array[FileResource]:
 	var found_files: Array[FileResource] = []
 	for item in current_folder.contained_files:
 		if item.file_type != FileResource.FileType.FOLDER: #ensure its not sending folder as well
+			found_files.append(item)
+		
+	return found_files
+
+#get all of the files
+func _get_all_files(current_folder: FileResource) -> Array[FileResource]:
+	var found_files: Array[FileResource] = []
+	
+	for item in current_folder.contained_files:
+		if item.file_type == FileResource.FileType.FOLDER:
+			var sub_folder = _get_all_files(item)
+			found_files.append(item)
+			found_files.append_array(sub_folder)
+		else:
+			found_files.append(item)
+		
+	return found_files
+
+#get only folder
+func _get_all_folder(current_folder: FileResource) -> Array[FileResource]:
+	var found_files: Array[FileResource] = []
+
+	for item in current_folder.contained_files:
+		if item.file_type == FileResource.FileType.FOLDER:
+			var sub_folder = _get_all_files(item)
+			found_files.append(item)
+		else:
 			found_files.append(item)
 		
 	return found_files
