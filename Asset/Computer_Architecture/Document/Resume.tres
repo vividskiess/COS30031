@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://df7fs0t5brhp"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_0ai82"]
+[ext_resource type="Texture2D" uid="uid://bi4xw8n23rjr6" path="res://Asset/notes.png" id="2_h2evf"]
+
+[resource]
+script = ExtResource("1_0ai82")
+display_name = "ResumeV3"
+icon_texture = ExtResource("2_h2evf")
+text_content = "My resume:
+name: Alex Jone
+Exp:
+Mcdonald
+KFC
+Subway"
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

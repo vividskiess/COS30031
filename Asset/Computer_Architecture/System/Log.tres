@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://ckvaavs7x3yc3"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_0efs0"]
+[ext_resource type="Texture2D" uid="uid://bi4xw8n23rjr6" path="res://Asset/notes.png" id="2_xi2mr"]
+
+[resource]
+script = ExtResource("1_0efs0")
+display_name = "SecurityLog"
+icon_texture = ExtResource("2_xi2mr")
+text_content = "There are sus activity here >:3 better find them"
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

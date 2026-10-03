@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://b4yx2pmmub1lw"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_r8oiv"]
+[ext_resource type="Texture2D" uid="uid://bi4xw8n23rjr6" path="res://Asset/notes.png" id="2_mgq7i"]
+
+[resource]
+script = ExtResource("1_r8oiv")
+display_name = "Taxes"
+icon_texture = ExtResource("2_mgq7i")
+text_content = "Income = -2000
+Tax Owed = 0.03AUD
+
+Spent on: Hotdog car"
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

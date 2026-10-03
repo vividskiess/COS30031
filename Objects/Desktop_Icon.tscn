@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://42lqgwhgm883"]
+
+[ext_resource type="Script" uid="uid://c17n2jifotxl" path="res://Script/Desktop_Icon.gd" id="1_op00i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xrivr"]
+
+[node name="DesktopIcon" type="Button" unique_id=776160744]
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 66.0
+offset_bottom = 59.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xrivr")
+script = ExtResource("1_op00i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=240582539]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer" unique_id=768820283]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1376058238]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1158902910]
+visible = false
+layout_mode = 2

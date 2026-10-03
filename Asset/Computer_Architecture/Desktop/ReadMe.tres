@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://cu6jgyhs6ung2"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_q4hct"]
+[ext_resource type="Texture2D" uid="uid://bi4xw8n23rjr6" path="res://Asset/notes.png" id="2_77swk"]
+
+[resource]
+script = ExtResource("1_q4hct")
+display_name = "ReadMe"
+icon_texture = ExtResource("2_77swk")
+text_content = "Welcome to the BrokenOS this is basically Windows so defecitive it borderline has a hole in it just like a kid hitting a baseball bat into a house window"
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FileResource" format=3 uid="uid://cxwsuony4x2gt"]
+
+[ext_resource type="Script" uid="uid://b01bfjknjm6rf" path="res://Script/FileResource.gd" id="1_wih1x"]
+[ext_resource type="Texture2D" uid="uid://d15l1hrse04lx" path="res://Asset/folder.png" id="2_onrn2"]
+
+[resource]
+script = ExtResource("1_wih1x")
+display_name = "Recycle"
+icon_texture = ExtResource("2_onrn2")
+file_type = 0
+metadata/_custom_type_script = "uid://b01bfjknjm6rf"
