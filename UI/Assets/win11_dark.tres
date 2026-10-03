@@ -245,6 +245,14 @@ shadow_color = Color(0, 0, 0, 0.55)
 shadow_size = 24
 shadow_offset = Vector2(0, 6)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wttl1"]
+content_margin_left = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tkbar"]
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+border_width_top = 1
+border_color = Color(1, 1, 1, 0.08)
+
 [sub_resource type="SystemFont" id="SystemFont_ixfno"]
 font_names = PackedStringArray("Segoe UI Variable Text", "Segoe UI")
 
@@ -305,13 +313,21 @@ TaskbarButton/styles/hover = SubResource("StyleBoxFlat_tbhov")
 TaskbarButton/styles/hover_pressed = SubResource("StyleBoxFlat_tbprs")
 TaskbarButton/styles/normal = SubResource("StyleBoxEmpty_tbnrm")
 TaskbarButton/styles/pressed = SubResource("StyleBoxFlat_tbprs")
+TaskbarPanel/base_type = &"Panel"
+TaskbarPanel/styles/panel = SubResource("StyleBoxFlat_tkbar")
 TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_ttpnl")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_grbnm")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_grbhl")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_grbpr")
 VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_vscrl")
+WindowContent/base_type = &"MarginContainer"
+WindowContent/constants/margin_bottom = 12
+WindowContent/constants/margin_left = 12
+WindowContent/constants/margin_right = 12
+WindowContent/constants/margin_top = 4
 WindowFrame/base_type = &"PanelContainer"
 WindowFrame/styles/panel = SubResource("StyleBoxFlat_wfrm1")
 WindowTitleLabel/base_type = &"Label"
 WindowTitleLabel/font_sizes/font_size = 12
+WindowTitleLabel/styles/normal = SubResource("StyleBoxEmpty_wttl1")
