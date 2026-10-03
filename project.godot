@@ -20,6 +20,7 @@ config/icon="res://Asset/icon.svg"
 FileSys="*uid://dk42gv0lhtwpk"
 RightClickMenu="*uid://in75jq0bwg7c"
 GlobalAudio="*uid://ydumlbiax163"
+SoundManager="*uid://crmqovfa6p56q"
 
 [display]
 
