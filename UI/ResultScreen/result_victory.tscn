@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cjjrhdwngdqdm"]
 
-[ext_resource type="PackedScene" uid="uid://bbw0lekqf28x3" path="res://UI/ResultScreen/result_screen.tscn" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://bbw0lekqf28x3" path="res://UI/ResultScreen/result_base.tscn" id="1_t560a"]
 
-[node name="Victory" instance=ExtResource("1_base")]
+[node name="Victory" unique_id=1184216020 instance=ExtResource("1_t560a")]
 
 [node name="Title" parent="Card" index="0"]
 theme_override_colors/font_color = Color(0.42, 0.8, 0.45, 1)

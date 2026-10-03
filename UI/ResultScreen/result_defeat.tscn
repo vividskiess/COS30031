@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://2eug2xmowvlx"]
+
+[ext_resource type="PackedScene" uid="uid://bbw0lekqf28x3" path="res://UI/ResultScreen/result_base.tscn" id="1_of1c2"]
+
+[node name="Defeat" unique_id=250097268 instance=ExtResource("1_of1c2")]
+
+[node name="Title" parent="Card" index="0"]
+theme_override_colors/font_color = Color(1, 0.42, 0.42, 1)
+text = "System compromised"
