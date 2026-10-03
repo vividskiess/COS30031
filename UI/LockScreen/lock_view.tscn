@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c4notg5x3kt0i"]
+
+[ext_resource type="Script" uid="uid://salwoa3p33sv" path="res://UI/LockScreen/Scripts/lock_view.gd" id="1_lock"]
+
+[node name="LockView" type="Control" unique_id=119160150]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lock")
+
+[node name="ClockBox" type="VBoxContainer" parent="." unique_id=1210350716]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -480.0
+offset_top = 96.0
+offset_right = 480.0
+offset_bottom = 340.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = -8
+
+[node name="Time" type="Label" parent="ClockBox" unique_id=575731557]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LockClockLabel"
+text = "9:41"
+horizontal_alignment = 1
+
+[node name="Date" type="Label" parent="ClockBox" unique_id=880885843]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"LockDateLabel"
+text = "Tuesday 29 September"
+horizontal_alignment = 1
+
+[node name="Tick" type="Timer" parent="." unique_id=27523389]
+autostart = true
+
+[connection signal="timeout" from="Tick" to="." method="_update_clock"]

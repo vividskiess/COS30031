@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://en2gv8hgdll1" path="res://Objects/Image_content.tscn" id="6_g5yav"]
 [ext_resource type="PackedScene" uid="uid://dqmambeci3q0y" path="res://Objects/Scanner.tscn" id="7_g5yav"]
 [ext_resource type="PackedScene" uid="uid://djlfigylqglor" path="res://Objects/Remediate.tscn" id="8_22w1b"]
+[ext_resource type="Texture2D" uid="uid://d2itjyya3bvco" path="res://UI/Assets/Icons/FluentUI-system-icons/Grid/SVG/ic_fluent_grid_20_filled_white.svg" id="5_start"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
 
@@ -26,8 +27,6 @@ _bundled = {
 "variants": [Vector2(400, 250), false, -1, 0.27497864, 0.14986025, 873.0, 516.0, Vector2(0.9657284, 1.0520145), 0, 4, SubResource("StyleBoxFlat_xrivr"), ExtResource("2_vosj3"), true, false, 2, 0, 2, 0, Vector2(40, 40), 2, 8, 0, 0.0, Vector2(800, 0), Vector2(40, 40), 2, 8, 0, 0.0, Vector2(800, 0), Vector2(40, 40), 2, 8, 0, 0.0, Vector2(800, 0), 2, 35, 2],
 "version": 3
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xnu4"]
 
 [node name="Desktop_manger" type="Control" unique_id=118327403]
 custom_minimum_size = Vector2(1920, 1080)
@@ -60,7 +59,7 @@ offset_bottom = 1081.0
 [node name="Panel" type="Panel" parent="Taskbar" unique_id=1857817609]
 custom_minimum_size = Vector2(1920, 80)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7xnu4")
+theme_type_variation = &"TaskbarPanel"
 
 [node name="TaskbarGrid" type="GridContainer" parent="Taskbar/Panel" unique_id=1292436697]
 custom_minimum_size = Vector2(1920, 80)
@@ -75,7 +74,9 @@ custom_minimum_size = Vector2(128, 64)
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_position = Vector2(50, 0)
-text = "Start"
+theme_type_variation = &"StartButton"
+icon = ExtResource("5_start")
+icon_alignment = 1
 
 [node name="Time" type="Panel" parent="Taskbar/Panel/TaskbarGrid" unique_id=1971144544]
 custom_minimum_size = Vector2(124, 64)

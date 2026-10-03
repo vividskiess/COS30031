@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://0qgabypy4bpf"]
+
+[ext_resource type="Script" uid="uid://lmttvv8hg52p" path="res://UI/LevelData/Scripts/level_data.gd" id="1_data"]
+
+
+[resource]
+script = ExtResource("1_data")
+account_name = "Intern"
+role = "Level 1"
+avatar_tint = Color(0.45, 0.47, 0.52, 1)

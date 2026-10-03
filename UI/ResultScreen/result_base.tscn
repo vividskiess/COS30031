@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bbw0lekqf28x3"]
+
+[ext_resource type="Theme" uid="uid://btnemj5b5j6fj" path="res://UI/Shared/lock_screen_theme.tres" id="1_mfjyg"]
+[ext_resource type="Script" uid="uid://d1u0x5b5huve0" path="res://UI/ResultScreen/Scripts/result_base.gd" id="2_tnm1p"]
+[ext_resource type="PackedScene" uid="uid://larih2olan7i" path="res://UI/Shared/wallpaper.tscn" id="3_ek0t8"]
+[ext_resource type="Texture2D" uid="uid://wv6lehbdodgp" path="res://UI/Assets/Icons/avatar.svg" id="4_2haw5"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_accept"]
+action = &"ui_accept"
+
+[sub_resource type="Shortcut" id="Shortcut_accept"]
+events = [SubResource("InputEventAction_accept")]
+
+[node name="ResultScreen" type="Control" unique_id=303965968]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mfjyg")
+script = ExtResource("2_tnm1p")
+game_scene = "uid://d0pouifvwpkjo"
+main_menu_scene = "uid://w2ik18r45bxu"
+
+[node name="Wallpaper" parent="." unique_id=1351514278 instance=ExtResource("3_ek0t8")]
+layout_mode = 1
+
+[node name="Card" type="VBoxContainer" parent="." unique_id=427904670]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_right = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="Label" parent="Card" unique_id=1475120007]
+layout_mode = 2
+theme_type_variation = &"LockUserLabel"
+theme_override_font_sizes/font_size = 44
+text = "Result"
+horizontal_alignment = 1
+
+[node name="AvatarFrame" type="PanelContainer" parent="Card" unique_id=2116497807]
+self_modulate = Color(0.45, 0.47, 0.52, 1)
+clip_children = 2
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+theme_type_variation = &"AvatarFrame"
+
+[node name="Avatar" type="TextureRect" parent="Card/AvatarFrame" unique_id=819910319]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_2haw5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UserName" type="Label" parent="Card" unique_id=269914176]
+layout_mode = 2
+theme_type_variation = &"LockUserLabel"
+text = "User"
+horizontal_alignment = 1
+
+[node name="EndTime" type="Label" parent="Card" unique_id=1718537455]
+layout_mode = 2
+theme_type_variation = &"LockCaptionLabel"
+text = "Ended at 09:00"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Card" unique_id=1712447109]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Primary" type="Button" parent="Card" unique_id=282679672]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_type_variation = &"PinSubmitButton"
+shortcut = SubResource("Shortcut_accept")
+shortcut_in_tooltip = false
+text = "Retry"
+
+[node name="MainMenu" type="Button" parent="Card" unique_id=194003561]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme_type_variation = &"UserListButton"
+text = "Main menu"
+
+[connection signal="pressed" from="Card/Primary" to="." method="_on_primary_pressed"]
+[connection signal="pressed" from="Card/MainMenu" to="." method="_on_main_menu_pressed"]
