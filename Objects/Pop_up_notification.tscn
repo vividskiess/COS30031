@@ -6,17 +6,26 @@
 bg_color = Color(0, 0.5396826, 0.89694744, 1)
 
 [node name="Popup" type="PanelContainer" unique_id=1766252695]
-custom_minimum_size = Vector2(250, 75)
-offset_right = 255.0
+custom_minimum_size = Vector2(260, 75)
+custom_maximum_size = Vector2(260, -1)
+propagate_maximum_size = false
+offset_right = 574.0
 offset_bottom = 75.0
-scale = Vector2(1.0031555, 1)
+rotation = -0.0030829627
+scale = Vector2(0.8695645, 1.0528854)
 theme_override_styles/panel = SubResource("StyleBoxFlat_k4evr")
 script = ExtResource("1_4oruq")
 
 [node name="Vbox" type="HBoxContainer" parent="." unique_id=1895538859]
+custom_minimum_size = Vector2(270, 25)
+custom_maximum_size = Vector2(260, 15)
+propagate_maximum_size = false
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="Hbox" type="VBoxContainer" parent="Vbox" unique_id=945928408]
+custom_minimum_size = Vector2(260, 20)
+custom_maximum_size = Vector2(260, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -25,18 +34,24 @@ custom_minimum_size = Vector2(15, 15)
 custom_maximum_size = Vector2(120, 40)
 layout_mode = 2
 size_flags_horizontal = 8
-size_flags_vertical = 2
+size_flags_vertical = 0
 offset_transform_position = Vector2(0, -25)
 
 [node name="Title" type="Label" parent="Vbox/Hbox" unique_id=498809098]
-custom_minimum_size = Vector2(250, 50)
+custom_minimum_size = Vector2(260, 20)
+custom_maximum_size = Vector2(260, 20)
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_horizontal = 0
 size_flags_stretch_ratio = 0.0
-offset_transform_enabled = true
+offset_transform_position = Vector2(10, 0)
 autowrap_mode = 2
 
 [node name="Message" type="Label" parent="Vbox" unique_id=2044002315]
+custom_minimum_size = Vector2(270, 40)
+custom_maximum_size = Vector2(270, 50)
 layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+offset_transform_position = Vector2(-20, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=277259152]

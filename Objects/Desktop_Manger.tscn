@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b6a2wm3d51h2f" path="res://Objects/Folder_content.tscn" id="4_ukg44"]
 [ext_resource type="PackedScene" uid="uid://dxf7ph5nbl2i4" path="res://Objects/Text_content.tscn" id="5_1af10"]
 [ext_resource type="PackedScene" uid="uid://djvel2tbwfkh8" path="res://Objects/Pop_up_notification.tscn" id="6_f35i7"]
+[ext_resource type="PackedScene" uid="uid://en2gv8hgdll1" path="res://Objects/Image_content.tscn" id="6_g5yav"]
 [ext_resource type="PackedScene" uid="uid://dqmambeci3q0y" path="res://Objects/Scanner.tscn" id="7_g5yav"]
 [ext_resource type="PackedScene" uid="uid://djlfigylqglor" path="res://Objects/Remediate.tscn" id="8_22w1b"]
 
@@ -37,6 +38,7 @@ window_scene = SubResource("PackedScene_ds4ad")
 desktop_icon = ExtResource("3_ds4ad")
 folder_scence = ExtResource("4_ukg44")
 text_scence = ExtResource("5_1af10")
+image_scence = ExtResource("6_g5yav")
 notification_scence = ExtResource("6_f35i7")
 Scanner_scence = ExtResource("7_g5yav")
 remediate_scence = ExtResource("8_22w1b")
@@ -106,9 +108,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -347.0
-offset_top = -117.0
-offset_right = -307.0
-offset_bottom = -77.0
+offset_left = -167.0
+offset_top = -130.0
+offset_right = -127.0
+offset_bottom = -90.0
 grow_horizontal = 0
 grow_vertical = 0

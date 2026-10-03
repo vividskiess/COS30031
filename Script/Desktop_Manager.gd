@@ -4,9 +4,12 @@ extends Control
 @export var desktop_icon: PackedScene
 @export var folder_scence: PackedScene
 @export var text_scence: PackedScene
+@export var image_scence: PackedScene
+
 @export var notification_scence: PackedScene
 @export var Scanner_scence: PackedScene
 @export var remediate_scence: PackedScene
+
 
 
 @export var difficulty: int = 3
@@ -63,6 +66,10 @@ func _ready() -> void:
 	InfectionManager.trigger_popup.connect(_on_icon_open)
 	InfectionManager.trigger_notification.connect(_spawn_notification)
 	InfectionManager.containment_breached.connect(_on_containment_breach)
+	
+	#InfectionManager._inject_malware(Worm, "Worm", 2) #testing
+
+	
 	
 	
 	#InfectionManager._inject_malware(AdwareVirus, "Adware", 1)
@@ -158,6 +165,11 @@ func _on_icon_open(data: FileResource) -> void:
 			folder_content.change_window_name.connect(func(file_data): new_window.set_title(file_data.display_name))
 			folder_content.open_new_window.connect(_on_icon_open)
 			folder_content.setup(data, "C:/Desktop/")
+			
+		FileResource.FileType.IMAGE:
+			var image_content = image_scence.instantiate()
+			new_window.embed_content(image_content)
+			image_content.setup(data)
 
 				
 #Control if window is changign size close or minimize
@@ -223,17 +235,22 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	_refresh_grid()
 	RightClickMenu.request_refresh.emit(old_folder)
 	
+	
+#To be moved to a different folder
 func _spawn_random_virus() -> void:
 	var virus_pool = [Rename_Virus, AdwareVirus, file_eater, destruction]
 	
 	var fake_names = ["1.exe", "2.exe", "3.exe", "4.exe"]
 	var all_item = FileSys._get_all_files(FileSys.desktop_folder)
 	
-	var all_folders: Array[FileResource] = [FileSys.desktop_folder]
-	
-	for item in all_item:
-		if item.file_type == FileResource.FileType.FOLDER:
-			all_folders.append(item)
+	#var all_folders: Array[FileResource] = [FileSys.desktop_folder]
+	#
+	#for item in all_item:
+		#if item.file_type == FileResource.FileType.FOLDER:
+			#all_folders.append(item)
+			
+	var all_folders: Array[FileResource] = FileSys._get_all_folder(FileSys.desktop_folder)
+	print(all_folders.size())
 	
 	for i in range(difficulty):
 		var chosen_virus = virus_pool.pick_random()
@@ -267,10 +284,11 @@ func _on_scan_finish(threats: Array[FileResource]) -> void:
 	
 func _contian_virus(file: FileResource) -> void:
 	var success = InfectionManager.attempt_containment(file, 2.0)
-	if success:
-		_show_notification("Threat Contianed", "%sContained for%d" % [file.display_name, int(2)])
-	else:
-		_show_notification("Containment Failed", "%s is not an acive threat" % file.display_name)
+	if file:
+		if success:
+			_show_notification("Threat Contianed", "%sContained for%d" % [file.display_name, int(2)])
+		else:
+			_show_notification("Containment Failed", "%s is not an acive threat" % file.display_name)
 		
 func _on_containment_breach(file:FileResource) -> void:
 	print("containment breach")

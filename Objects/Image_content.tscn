@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://en2gv8hgdll1"]
+
+[ext_resource type="Script" uid="uid://b3yaltycs1p71" path="res://Script/Image_content.gd" id="1_ijom1"]
+
+[node name="Image_Scence" type="Control" unique_id=1954798437]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ijom1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1307441514]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 52.0
+offset_bottom = 50.0
+scale = Vector2(7.782604, 4.3048124)

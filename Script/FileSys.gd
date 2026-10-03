@@ -60,6 +60,7 @@ func paste_file(target_folder: FileResource)->void:
 		new_file.parent_path = target_folder
 		target_folder.contained_files.append(new_file)
 		
+#get file in folder
 func get_all_file_in_folder_for_scan(current_folder: FileResource) -> Array[FileResource]:
 	var found_files: Array[FileResource] = []
 	for item in current_folder.contained_files:
@@ -68,6 +69,7 @@ func get_all_file_in_folder_for_scan(current_folder: FileResource) -> Array[File
 		
 	return found_files
 
+#get all of the files
 func _get_all_files(current_folder: FileResource) -> Array[FileResource]:
 	var found_files: Array[FileResource] = []
 	
@@ -76,6 +78,19 @@ func _get_all_files(current_folder: FileResource) -> Array[FileResource]:
 			var sub_folder = _get_all_files(item)
 			found_files.append(item)
 			found_files.append_array(sub_folder)
+		else:
+			found_files.append(item)
+		
+	return found_files
+
+#get only folder
+func _get_all_folder(current_folder: FileResource) -> Array[FileResource]:
+	var found_files: Array[FileResource] = []
+
+	for item in current_folder.contained_files:
+		if item.file_type == FileResource.FileType.FOLDER:
+			var sub_folder = _get_all_files(item)
+			found_files.append(item)
 		else:
 			found_files.append(item)
 		
