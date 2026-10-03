@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const LOCK_SCREEN := "res://UI/LockScreen/Lock_Screen.tscn"
+@export_file("*.tscn") var main_menu_scene: String
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -44,7 +44,7 @@ func _on_restart_pressed() -> void:
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file(LOCK_SCREEN)
+	get_tree().change_scene_to_file(main_menu_scene)
 
 
 func _on_quit_pressed() -> void:

@@ -2,8 +2,7 @@ extends Control
 
 signal back_requested
 
-const MAIN_WORLD := "res://Objects/Main_World.tscn"
-
+@export_file("*.tscn") var game_scene: String
 @export var account_card: PackedScene
 @export var levels: Array[LevelData] = []
 
@@ -17,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_account_pressed() -> void:
-	get_tree().change_scene_to_file(MAIN_WORLD)
+	get_tree().change_scene_to_file(game_scene)
 
 
 func _on_back_pressed() -> void:

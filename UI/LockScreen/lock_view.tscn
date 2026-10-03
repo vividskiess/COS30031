@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4notg5x3kt0i"]
 
-[ext_resource type="Script" uid="uid://salwoa3p33sv" path="res://UI/LockScreen/lock_view.gd" id="1_lock"]
+[ext_resource type="Script" uid="uid://salwoa3p33sv" path="res://UI/LockScreen/Scripts/lock_view.gd" id="1_lock"]
 
 [node name="LockView" type="Control" unique_id=119160150]
 layout_mode = 3
@@ -39,7 +39,7 @@ theme_type_variation = &"LockDateLabel"
 text = "Tuesday 29 September"
 horizontal_alignment = 1
 
-[node name="Tick" type="Timer" parent="."]
+[node name="Tick" type="Timer" parent="." unique_id=27523389]
 autostart = true
 
 [connection signal="timeout" from="Tick" to="." method="_update_clock"]

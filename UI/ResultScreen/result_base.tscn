@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bbw0lekqf28x3"]
 
-[ext_resource type="Theme" uid="uid://btnemj5b5j6fj" path="res://UI/LockScreen/lock_screen.tres" id="1_mfjyg"]
-[ext_resource type="Script" uid="uid://d1u0x5b5huve0" path="res://UI/ResultScreen/result_base.gd" id="2_tnm1p"]
-[ext_resource type="PackedScene" uid="uid://larih2olan7i" path="res://UI/LockScreen/wallpaper.tscn" id="3_ek0t8"]
+[ext_resource type="Theme" uid="uid://btnemj5b5j6fj" path="res://UI/Shared/lock_screen_theme.tres" id="1_mfjyg"]
+[ext_resource type="Script" uid="uid://d1u0x5b5huve0" path="res://UI/ResultScreen/Scripts/result_base.gd" id="2_tnm1p"]
+[ext_resource type="PackedScene" uid="uid://larih2olan7i" path="res://UI/Shared/wallpaper.tscn" id="3_ek0t8"]
 [ext_resource type="Texture2D" uid="uid://wv6lehbdodgp" path="res://UI/Assets/Icons/avatar.svg" id="4_2haw5"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_accept"]
@@ -20,6 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mfjyg")
 script = ExtResource("2_tnm1p")
+game_scene = "uid://d0pouifvwpkjo"
+main_menu_scene = "uid://w2ik18r45bxu"
 
 [node name="Wallpaper" parent="." unique_id=1351514278 instance=ExtResource("3_ek0t8")]
 layout_mode = 1

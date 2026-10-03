@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://wv6lehbdodgp" path="res://UI/Assets/Icons/avatar.svg" id="1_l2g1e"]
 [ext_resource type="Texture2D" uid="uid://dhnfdc1thtopn" path="res://UI/Assets/Icons/FluentUI-system-icons/Power/SVG/ic_fluent_power_20_regular_white.svg" id="4_34x7w"]
-[ext_resource type="Script" uid="uid://6l1jydu2a4q6" path="res://UI/LockScreen/login_view.gd" id="5_script"]
+[ext_resource type="Script" uid="uid://6l1jydu2a4q6" path="res://UI/LockScreen/Scripts/lock_login_view.gd" id="5_script"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_accept"]
 action = &"ui_accept"

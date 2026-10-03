@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://w2ik18r45bxu"]
 
-[ext_resource type="Theme" uid="uid://btnemj5b5j6fj" path="res://UI/LockScreen/lock_screen.tres" id="1_theme"]
-[ext_resource type="PackedScene" uid="uid://larih2olan7i" path="res://UI/LockScreen/wallpaper.tscn" id="2_wall"]
+[ext_resource type="Theme" uid="uid://btnemj5b5j6fj" path="res://UI/Shared/lock_screen_theme.tres" id="1_theme"]
+[ext_resource type="PackedScene" uid="uid://larih2olan7i" path="res://UI/Shared/wallpaper.tscn" id="2_wall"]
 [ext_resource type="PackedScene" uid="uid://c4notg5x3kt0i" path="res://UI/LockScreen/lock_view.tscn" id="3_lock"]
-[ext_resource type="PackedScene" uid="uid://j1u05qk4e7v2" path="res://UI/LockScreen/login_view.tscn" id="4_login"]
-[ext_resource type="Script" uid="uid://2pecpd425s66" path="res://UI/LockScreen/lock_screen.gd" id="5_script"]
-[ext_resource type="PackedScene" uid="uid://f6aowyrr2nig" path="res://UI/LockScreen/level_select_view.tscn" id="6_levels"]
+[ext_resource type="PackedScene" uid="uid://j1u05qk4e7v2" path="res://UI/LockScreen/lock_login_view.tscn" id="4_login"]
+[ext_resource type="Script" uid="uid://2pecpd425s66" path="res://UI/LockScreen/Scripts/lock_screen.gd" id="5_script"]
+[ext_resource type="PackedScene" uid="uid://f6aowyrr2nig" path="res://UI/LockScreen/lock_level_select_view.tscn" id="6_levels"]
 
 [sub_resource type="Animation" id="Animation_reset"]
 resource_name = "RESET"
