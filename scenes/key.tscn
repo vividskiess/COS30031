@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://dieo08muy21hl"]
 
-[ext_resource type="Script" uid="uid://ccy7slvcc7tbf" path="res://scripts/key.gd" id="1_fttkb"]
 [ext_resource type="Texture2D" uid="uid://b8hu6h83ui8yd" path="res://assets/minigame/key.png" id="1_yk2u2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bntgb"]
 size = Vector2(12, 15)
 
 [node name="Key" type="Area2D" unique_id=203972376]
-script = ExtResource("1_fttkb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808216121]
 position = Vector2(8, 8)

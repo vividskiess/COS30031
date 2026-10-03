@@ -3,6 +3,8 @@ extends Node2D
 var key_node = preload("res://scenes/key.tscn")
 var exit_node = preload("res://scenes/exit.tscn")
 
+signal key_obtained(amount: bool)
+
 # The level script will procedurally generate a maze for the level scene each time it is called.
 # The maze is generated through the Recursive Backtrack algorithm.
 
@@ -27,8 +29,8 @@ var cell_walls = {
 	Vector2(-1, 0): W}
 
 var tile_size = 16 # Tile size (pixels)
-var width = 30 # Maze width (tiles)
-var height = 17 # Maze width (tiles)
+var width = 15 # Maze width (tiles)
+var height = 8 # Maze width (tiles)
 
 var maze_seed = 0 # Seed value for map.
 
@@ -37,6 +39,10 @@ var key_spawn = (width * height)/2 - 1
 var exit_spawn = (width * height) - 1
 
 @onready var Map = $TileMapLayer # Reference to the tile map for convenience.
+
+var key = key_node.instantiate()
+var exit = exit_node.instantiate()
+var exit_open = false
 
 func _ready():
 	randomize()
@@ -47,6 +53,8 @@ func _ready():
 	# tile_size = Map.tile_set.tile_size
 	
 	make_maze()
+	key.body_entered.connect(_on_key_entered)
+	exit.body_entered.connect(_on_exit_entered)
 
 func check_neighbours(cell, unvisited):
 	# Returns array of the cell's unvisited neighbours.
@@ -83,13 +91,23 @@ func make_maze():
 			unvisited.erase(current) # Erases the current tile from unvisited, as it will now be visited through a new iteration of this while loop.
 			counter += 1
 			if (counter == key_spawn):
-				var key = key_node.instantiate()
 				key.position = current * tile_size
 				add_child(key)
 			if (counter == exit_spawn):
-				var exit = exit_node.instantiate()
+				
 				exit.position = current * tile_size
 				add_child(exit)
 		elif stack: # Checks if stack is currently not empty - this is only if there are no neighbours to be scanned - this is where we backtrack recursively.
 			current = stack.pop_back()
 		await get_tree().create_timer(0.005).timeout # Shows maze creation in real time.
+
+func _on_key_entered(body: Node2D) -> void:
+	key_obtained.emit(true)
+	key.queue_free()
+	exit_open = true
+
+func _on_exit_entered(body: Node2D) -> void:
+	if(exit_open == true):
+		self.queue_free()
+	else:
+		pass
